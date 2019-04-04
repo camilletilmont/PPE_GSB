@@ -6,7 +6,6 @@
 package IHM;
 
 import Service.CMetierRV;
-import com.sun.org.apache.xpath.internal.axes.SelfIteratorNoPredicate;
 
 
 /**
@@ -100,7 +99,7 @@ public class JPanelConnexion extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if(getMetierConnexion().connexion(jTextField1.getText(),jTextField2.getText())){
+        if(getMetierConnexion().connexion(jTextField2.getText(),jTextField1.getText())){
             setVisible(false);
             
             
