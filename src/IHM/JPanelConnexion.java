@@ -6,6 +6,7 @@
 package IHM;
 
 import Service.CMetierRV;
+import javax.swing.JTabbedPane;
 
 
 /**
@@ -22,6 +23,15 @@ public class JPanelConnexion extends javax.swing.JPanel {
     }
     
     protected CMetierRV metierConnexion;
+    protected JTabbedPane panelParent;
+
+    public JTabbedPane getPanelParent() {
+        return panelParent;
+    }
+
+    public void setPanelParent(JTabbedPane panelParent) {
+        this.panelParent = panelParent;
+    }
 
     public CMetierRV getMetierConnexion() {
         return metierConnexion;
@@ -65,8 +75,8 @@ public class JPanelConnexion extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(240, 240, 240)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(366, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton1)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -78,12 +88,12 @@ public class JPanelConnexion extends javax.swing.JPanel {
                         .addGroup(layout.createSequentialGroup()
                             .addGap(8, 8, 8)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(256, Short.MAX_VALUE))
+                .addGap(359, 359, 359))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(120, 120, 120)
+                .addGap(155, 155, 155)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -93,14 +103,15 @@ public class JPanelConnexion extends javax.swing.JPanel {
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(jButton1)
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         if(getMetierConnexion().connexion(jTextField2.getText(),jTextField1.getText())){
-            setVisible(false);
+            getPanelParent().removeTabAt(0);
+            
             
             
         }else{

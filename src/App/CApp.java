@@ -18,8 +18,9 @@ public class CApp {
         CMetierRV metierRV = new CMetierRV();
         JFrameRapportVisite fenetreApp = new JFrameRapportVisite();
         fenetreApp.setVisible(true);
-        fenetreApp.getjPanelConnexion1().setMetierConnexion(metierRV);
-        fenetreApp.getJPanelDetailRapport().setMetierDetailRV(metierRV);
+        fenetreApp.getjPanelConnexion2().setMetierConnexion(metierRV);
+        fenetreApp.getjPanelListeRapport2().setMetierListe(metierRV);
+        fenetreApp.getjPanelDetailRapport2().setMetierDetailRV(metierRV);
     }
     
 }

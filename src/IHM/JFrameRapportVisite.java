@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package IHM;
-
+import javax.swing.JTabbedPane;
 /**
  *
  * @author camilletilmont
@@ -16,6 +16,9 @@ public class JFrameRapportVisite extends javax.swing.JFrame {
      */
     public JFrameRapportVisite() {
         initComponents();
+        getjPanelConnexion2().setPanelParent(jTabbedPane2);
+        //getjTabbedPane2().setTabPlacement(ABORT);
+        
     }
 
     /**
@@ -27,33 +30,44 @@ public class JFrameRapportVisite extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelConnexion1 = new IHM.JPanelConnexion();
-        jPanelDetailRapport1 = new IHM.JPanelDetailRapport();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jPanelConnexion2 = new IHM.JPanelConnexion();
+        jPanelListeRapport2 = new IHM.JPanelListeRapport();
+        jPanelDetailRapport2 = new IHM.JPanelDetailRapport();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jTabbedPane2.addTab("tab1", jPanelConnexion2);
+
+        javax.swing.GroupLayout jPanelListeRapport2Layout = new javax.swing.GroupLayout(jPanelListeRapport2);
+        jPanelListeRapport2.setLayout(jPanelListeRapport2Layout);
+        jPanelListeRapport2Layout.setHorizontalGroup(
+            jPanelListeRapport2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanelListeRapport2Layout.setVerticalGroup(
+            jPanelListeRapport2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jTabbedPane2.addTab("tab2", jPanelListeRapport2);
+        jTabbedPane2.addTab("tab3", jPanelDetailRapport2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(jPanelConnexion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanelDetailRapport1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelDetailRapport1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanelConnexion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -95,15 +109,31 @@ public class JFrameRapportVisite extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private IHM.JPanelConnexion jPanelConnexion1;
-    private IHM.JPanelDetailRapport jPanelDetailRapport1;
+    private IHM.JPanelConnexion jPanelConnexion2;
+    private IHM.JPanelDetailRapport jPanelDetailRapport2;
+    private IHM.JPanelListeRapport jPanelListeRapport2;
+    private javax.swing.JTabbedPane jTabbedPane2;
     // End of variables declaration//GEN-END:variables
 
-    public JPanelConnexion getjPanelConnexion1() {
-        return jPanelConnexion1;
+    public final JPanelConnexion getjPanelConnexion2() {
+        return jPanelConnexion2;
+    }
+
+    public JPanelDetailRapport getjPanelDetailRapport2() {
+        return jPanelDetailRapport2;
+    }
+
+    public JPanelListeRapport getjPanelListeRapport2() {
+        return jPanelListeRapport2;
     }
     
-    public JPanelDetailRapport getJPanelDetailRapport(){
-        return jPanelDetailRapport1;
+
+    public void setjTabbedPane1(JTabbedPane jTabbedPane2) {
+        this.jTabbedPane2 = jTabbedPane2;
     }
+
+    public final JTabbedPane getjTabbedPane2() {
+        return jTabbedPane2;
+    }
+    
 }

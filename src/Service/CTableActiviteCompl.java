@@ -169,7 +169,7 @@ public class CTableActiviteCompl {
             
             GregorianCalendar gb = new GregorianCalendar();
             gb.setTime(Timestamp.valueOf(rs.getString("AC_DATE_ACTIVITE_COMPL")));
-            //gb.setTime(Date.valueOf(rs.getString("AC_DATE_ACTIVITE_COMPL")));
+            
             
             String lieu = rs.getString("AC_LIEU_ACTIVITE_COMPL");
             String theme = rs.getString("AC_THEME_ACTIVITE_COMPL");
