@@ -139,13 +139,6 @@ public class JPanelConnexion extends javax.swing.JPanel {
 
         }
 
-        if (valueConnexion == 2) {
-
-        } else {
-
-           
-
-        }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
