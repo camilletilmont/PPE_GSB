@@ -5,9 +5,13 @@
  */
 package IHM;
 
+
 import Service.CMetierRV;
+import java.text.SimpleDateFormat;
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
-import javax.swing.table.TableColumn;
+import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -24,12 +28,21 @@ public class JPanelListeRapport extends javax.swing.JPanel {
     }
     
      protected CMetierRV metierListeRV;
+      protected JTabbedPane panelParent;
 
-    public CMetierRV getMetierListe() {
+    public JTabbedPane getPanelParent() {
+        return panelParent;
+    }
+
+    public void setPanelParent(JTabbedPane panelParent) {
+        this.panelParent = panelParent;
+    }
+
+    public CMetierRV getMetierListeRV() {
         return metierListeRV;
     }
 
-    public void setMetierListe(CMetierRV metier) {
+    public void setMetierListeRV(CMetierRV metier) {
         this.metierListeRV = metier;
     }
 
@@ -51,19 +64,14 @@ public class JPanelListeRapport extends javax.swing.JPanel {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Date", "Praticien", "Motif Visite", "Bilan"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false
@@ -78,12 +86,6 @@ public class JPanelListeRapport extends javax.swing.JPanel {
             }
         });
         jScrollPane2.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(0).setResizable(false);
-            jTable2.getColumnModel().getColumn(1).setResizable(false);
-            jTable2.getColumnModel().getColumn(2).setResizable(false);
-            jTable2.getColumnModel().getColumn(3).setResizable(false);
-        }
 
         jButton1.setText("Nouveau Rapport");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -93,10 +95,25 @@ public class JPanelListeRapport extends javax.swing.JPanel {
         });
 
         jButton2.setText("Lire Rapport");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Se Deconnecter");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Rafraichir");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -133,6 +150,40 @@ public class JPanelListeRapport extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        getPanelParent().setSelectedIndex(1);
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        int valueRefresh = getMetierListeRV().afficherRPVisiteurs();
+        switch (valueRefresh){
+            case 0 :
+                
+                break;
+            case 2 :
+                DefaultTableModel model = (DefaultTableModel) getjTable2().getModel();
+                model.setRowCount(0);
+                getMetierListeRV().getListeRapportVisite().forEach((rapport) -> {
+                    ;
+
+                    model.addRow(new Object[]{new SimpleDateFormat("dd/MM/yyyy").format(rapport.getDateRapport().getTime()), rapport.getPraticienRapport().getNom() + " " + rapport.getPraticienRapport().getPrenom(),rapport.getMotifRapport(),rapport.getBilanRapport()});
+                });
+                break;
+            default :
+                
+                break;
+        
+        }
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

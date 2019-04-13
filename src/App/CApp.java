@@ -20,7 +20,7 @@ public class CApp {
         JFrameRapportVisite fenetreApp = new JFrameRapportVisite();
         fenetreApp.setVisible(true);
         fenetreApp.getjPanelConnexion2().setMetierConnexion(metierRV);
-        fenetreApp.getjPanelListeRapport2().setMetierListe(metierRV);
+        fenetreApp.getjPanelListeRapport1().setMetierListeRV(metierRV);
         fenetreApp.getjPanelDetailRapport2().setMetierDetailRV(metierRV);
         fenetreApp.getjTabbedPane2().setEnabledAt(1, false);
         fenetreApp.getjTabbedPane2().setBackgroundAt(1, Color.darkGray);

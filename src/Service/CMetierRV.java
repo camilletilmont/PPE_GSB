@@ -21,10 +21,11 @@ public class CMetierRV {
     //attributs
     
     protected CVisiteur visiteur;
-    protected CRapportVisite rapportVisite;
+    protected ArrayList<CRapportVisite> listeRapportVisite;
     protected ArrayList<CPraticien> listPraticien;
     protected ArrayList<CEchantillon> listeLectureEchantillion;
 
+   
    
 
     //getter et setter
@@ -33,19 +34,18 @@ public class CMetierRV {
         return visiteur;
     }
 
-    public final void setVisiteur(CVisiteur visiteur) {
+    public void setVisiteur(CVisiteur visiteur) {
         this.visiteur = visiteur;
     }
 
-    public CRapportVisite getRapportVisite() {
-        return rapportVisite;
+    public ArrayList<CRapportVisite> getListeRapportVisite() {
+        return listeRapportVisite;
     }
 
-    public void setRapportVisite(CRapportVisite rapportVisite) {
-        this.rapportVisite = rapportVisite;
+    public void setListeRapportVisite(ArrayList<CRapportVisite> listeRapportVisite) {
+        this.listeRapportVisite = listeRapportVisite;
     }
-    
-   
+
     public ArrayList<CPraticien> getListPraticien() {
         return listPraticien;
     }
@@ -53,14 +53,15 @@ public class CMetierRV {
     public final void setListPraticien(ArrayList<CPraticien> listPraticien) {
         this.listPraticien = listPraticien;
     }
-    
-     public ArrayList<CEchantillon> getListeLectureEchantillion() {
+
+    public ArrayList<CEchantillon> getListeLectureEchantillion() {
         return listeLectureEchantillion;
     }
 
     public final void setListeLectureEchantillion(ArrayList<CEchantillon> listeLectureEchantillion) {
         this.listeLectureEchantillion = listeLectureEchantillion;
     }
+
 
     //constructeur
     
@@ -108,5 +109,18 @@ public class CMetierRV {
     public void modifierRapportVisite(){}
     
     public void supprimerRapportVisite(){}
+    
+    public int afficherRPVisiteurs(){
+       CTableRapportVisite tableRP = new CTableRapportVisite();
+       ArrayList<CRapportVisite> rapportsTest = tableRP.lire1RapportVisite("VIS_MATRICULE_VISITEUR", getVisiteur().getMatricule());
+       
+       if(rapportsTest.isEmpty()){
+           return 0;
+       }else{
+        setListeRapportVisite(rapportsTest);
+        return 2;
+       
+       }
+    }
     
 }

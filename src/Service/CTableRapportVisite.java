@@ -234,7 +234,7 @@ public class CTableRapportVisite {
      public ArrayList<CRapportVisite> lire1RapportVisite(String column, String data) {
         if (bdd.connecter() == true) {
             ArrayList<CRapportVisite> liste1Rapport = new ArrayList();
-            ResultSet rs = bdd.executerRequeteQuery("SELECT * FROM `RAPPORT_VISITE` WHERE " + column + " = '" + data + "';");
+            ResultSet rs = bdd.executerRequeteQuery("SELECT * FROM `RAPPORT_VISITE` WHERE " + column + " = '" + data + "' ORDER BY RAP_DATE_RAPPORT_VISITE DESC;");
             try {
                 
                

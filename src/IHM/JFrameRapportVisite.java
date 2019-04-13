@@ -17,6 +17,7 @@ public class JFrameRapportVisite extends javax.swing.JFrame {
     public JFrameRapportVisite() {
         initComponents();
         getjPanelConnexion2().setPanelParent(jTabbedPane2);
+        getjPanelListeRapport1().setPanelParent(jTabbedPane2);
         //getjTabbedPane2().setTabPlacement(ABORT);
         
     }
@@ -32,25 +33,13 @@ public class JFrameRapportVisite extends javax.swing.JFrame {
 
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanelConnexion2 = new IHM.JPanelConnexion();
-        jPanelListeRapport2 = new IHM.JPanelListeRapport();
+        jPanelListeRapport1 = new IHM.JPanelListeRapport();
         jPanelDetailRapport2 = new IHM.JPanelDetailRapport();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTabbedPane2.addTab("Connexion", jPanelConnexion2);
-
-        javax.swing.GroupLayout jPanelListeRapport2Layout = new javax.swing.GroupLayout(jPanelListeRapport2);
-        jPanelListeRapport2.setLayout(jPanelListeRapport2Layout);
-        jPanelListeRapport2Layout.setHorizontalGroup(
-            jPanelListeRapport2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanelListeRapport2Layout.setVerticalGroup(
-            jPanelListeRapport2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        jTabbedPane2.addTab("Liste Rapports", jPanelListeRapport2);
+        jTabbedPane2.addTab("Liste Rapports", jPanelListeRapport1);
         jTabbedPane2.addTab("Rapport de Visite", jPanelDetailRapport2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -111,7 +100,7 @@ public class JFrameRapportVisite extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private IHM.JPanelConnexion jPanelConnexion2;
     private IHM.JPanelDetailRapport jPanelDetailRapport2;
-    private IHM.JPanelListeRapport jPanelListeRapport2;
+    private IHM.JPanelListeRapport jPanelListeRapport1;
     private javax.swing.JTabbedPane jTabbedPane2;
     // End of variables declaration//GEN-END:variables
 
@@ -123,8 +112,8 @@ public class JFrameRapportVisite extends javax.swing.JFrame {
         return jPanelDetailRapport2;
     }
 
-    public JPanelListeRapport getjPanelListeRapport2() {
-        return jPanelListeRapport2;
+    public final JPanelListeRapport getjPanelListeRapport1() {
+        return jPanelListeRapport1;
     }
     
 
