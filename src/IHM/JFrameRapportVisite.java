@@ -37,7 +37,7 @@ public class JFrameRapportVisite extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTabbedPane2.addTab("tab1", jPanelConnexion2);
+        jTabbedPane2.addTab("Connexion", jPanelConnexion2);
 
         javax.swing.GroupLayout jPanelListeRapport2Layout = new javax.swing.GroupLayout(jPanelListeRapport2);
         jPanelListeRapport2.setLayout(jPanelListeRapport2Layout);
@@ -50,8 +50,8 @@ public class JFrameRapportVisite extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jTabbedPane2.addTab("tab2", jPanelListeRapport2);
-        jTabbedPane2.addTab("tab3", jPanelDetailRapport2);
+        jTabbedPane2.addTab("Liste Rapports", jPanelListeRapport2);
+        jTabbedPane2.addTab("Rapport de Visite", jPanelDetailRapport2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

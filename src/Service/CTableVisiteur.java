@@ -240,6 +240,8 @@ public class CTableVisiteur {
                
                }
             } catch (SQLException ex) {
+                
+                return listeVisiteur;
             }
             bdd.deconnecter();
             

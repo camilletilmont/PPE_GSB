@@ -7,6 +7,7 @@ package App;
 
 import IHM.JFrameRapportVisite;
 import Service.CMetierRV;
+import java.awt.Color;
 
 /**
  *
@@ -21,6 +22,12 @@ public class CApp {
         fenetreApp.getjPanelConnexion2().setMetierConnexion(metierRV);
         fenetreApp.getjPanelListeRapport2().setMetierListe(metierRV);
         fenetreApp.getjPanelDetailRapport2().setMetierDetailRV(metierRV);
+        fenetreApp.getjTabbedPane2().setEnabledAt(1, false);
+        fenetreApp.getjTabbedPane2().setBackgroundAt(1, Color.darkGray);
+        fenetreApp.getjTabbedPane2().setForegroundAt(1, Color.LIGHT_GRAY);
+        fenetreApp.getjTabbedPane2().setEnabledAt(2, false);
+        fenetreApp.getjTabbedPane2().setBackgroundAt(2, Color.darkGray);
+        fenetreApp.getjTabbedPane2().setForegroundAt(2, Color.LIGHT_GRAY);
     }
     
 }

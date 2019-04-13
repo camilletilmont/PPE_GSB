@@ -6,8 +6,8 @@
 package IHM;
 
 import Service.CMetierRV;
+import java.awt.Color;
 import javax.swing.JTabbedPane;
-
 
 /**
  *
@@ -21,7 +21,7 @@ public class JPanelConnexion extends javax.swing.JPanel {
     public JPanelConnexion() {
         initComponents();
     }
-    
+
     protected CMetierRV metierConnexion;
     protected JTabbedPane panelParent;
 
@@ -109,18 +109,44 @@ public class JPanelConnexion extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if(getMetierConnexion().connexion(jTextField2.getText(),jTextField1.getText())){
-            getPanelParent().removeTabAt(0);
-            
-            
-            
-        }else{
-        
-            jTextField1.setText("Erreur");
-            jTextField2.setText("Erreur");
-        
+
+        int valueConnexion = getMetierConnexion().connexion(jTextField2.getText(), jTextField1.getText());
+        switch (valueConnexion) {
+            case 0:
+                
+                jTextField2.setText("Id Inconnu");
+                break;
+            case 1:
+                jTextField1.setText("Nom Incorrect");
+                
+                break;
+
+            case 2:
+                getPanelParent().setEnabledAt(1, true);
+                getPanelParent().setBackgroundAt(1, Color.lightGray);
+                getPanelParent().setForegroundAt(1, Color.black);
+                getPanelParent().setEnabledAt(2, true);
+                getPanelParent().setBackgroundAt(2, Color.lightGray);
+                getPanelParent().setForegroundAt(2, Color.black);
+                getPanelParent().removeTabAt(0);
+
+                break;
+
+            case 3:
+                jTextField1.setText("");
+                jTextField2.setText("");
+                break;
+
         }
-        
+
+        if (valueConnexion == 2) {
+
+        } else {
+
+           
+
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

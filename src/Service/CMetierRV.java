@@ -76,15 +76,23 @@ public class CMetierRV {
     //methodes
     
     
-    public Boolean connexion(String id, String nom){
+    public int connexion(String id, String nom) {
         CTableVisiteur tableVisit = new CTableVisiteur();
-        CVisiteur visiTest = tableVisit.lire1Visiteurs("VIS_MATRICULE_VISITEUR",id).get(0);
-        if(visiTest.getNom().equals(nom)){
-            setVisiteur(visiTest);
-            return true;
-        }else{
-                
-            return false;
+        ArrayList<CVisiteur> visiTest = tableVisit.lire1Visiteurs("VIS_MATRICULE_VISITEUR", id);
+        if (visiTest.isEmpty()) {
+
+            return 0;
+        } else if (!visiTest.get(0).getNom().equals(nom)) {
+
+            return 1;
+
+        } else if (visiTest.get(0).getNom().equals(nom)) {
+            setVisiteur(visiTest.get(0));
+            return 2;
+        } else {
+
+            return 3;
+
         }
     }
     

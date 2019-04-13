@@ -48,8 +48,8 @@
         <Component class="IHM.JPanelConnexion" name="jPanelConnexion2">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="tab1">
-                <Property name="tabTitle" type="java.lang.String" value="tab1"/>
+              <JTabbedPaneConstraints tabName="Connexion">
+                <Property name="tabTitle" type="java.lang.String" value="Connexion"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -57,8 +57,8 @@
         <Container class="IHM.JPanelListeRapport" name="jPanelListeRapport2">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="tab2">
-                <Property name="tabTitle" type="java.lang.String" value="tab2"/>
+              <JTabbedPaneConstraints tabName="Liste Rapports">
+                <Property name="tabTitle" type="java.lang.String" value="Liste Rapports"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -79,8 +79,8 @@
         <Component class="IHM.JPanelDetailRapport" name="jPanelDetailRapport2">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="tab3">
-                <Property name="tabTitle" type="java.lang.String" value="tab3"/>
+              <JTabbedPaneConstraints tabName="Rapport de Visite">
+                <Property name="tabTitle" type="java.lang.String" value="Rapport de Visite"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
