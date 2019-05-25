@@ -24,6 +24,15 @@ public class JPanelConnexion extends javax.swing.JPanel {
 
     protected CMetierRV metierConnexion;
     protected JTabbedPane panelParent;
+    protected JPanelListeRapport panelListRapport;
+
+    public JPanelListeRapport getPanelListRapport() {
+        return panelListRapport;
+    }
+
+    public void setPanelListRapport(JPanelListeRapport panelListRapport) {
+        this.panelListRapport = panelListRapport;
+    }
 
     public JTabbedPane getPanelParent() {
         return panelParent;
@@ -125,9 +134,11 @@ public class JPanelConnexion extends javax.swing.JPanel {
                 getPanelParent().setEnabledAt(1, true);
                 getPanelParent().setBackgroundAt(1, Color.lightGray);
                 getPanelParent().setForegroundAt(1, Color.black);
+                getPanelListRapport().refresh();
                 getPanelParent().setEnabledAt(2, true);
                 getPanelParent().setBackgroundAt(2, Color.lightGray);
                 getPanelParent().setForegroundAt(2, Color.black);
+                
                 getPanelParent().removeTabAt(0);
 
                 break;

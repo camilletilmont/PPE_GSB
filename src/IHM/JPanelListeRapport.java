@@ -7,6 +7,7 @@ package IHM;
 
 
 import Service.CMetierRV;
+import java.awt.Color;
 import java.text.SimpleDateFormat;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
@@ -29,6 +30,24 @@ public class JPanelListeRapport extends javax.swing.JPanel {
     
      protected CMetierRV metierListeRV;
       protected JTabbedPane panelParent;
+      protected JPanelDetailRapport panelDetailRapport;
+      protected JPanelConnexion panelCo;
+
+    public JPanelConnexion getPanelCo() {
+        return panelCo;
+    }
+
+    public void setPanelCo(JPanelConnexion panelCo) {
+        this.panelCo = panelCo;
+    }
+
+    public JPanelDetailRapport getPanelDetailRapport() {
+        return panelDetailRapport;
+    }
+
+    public void setPanelDetailRapport(JPanelDetailRapport panelDetailRapport) {
+        this.panelDetailRapport = panelDetailRapport;
+    }
 
     public JTabbedPane getPanelParent() {
         return panelParent;
@@ -131,19 +150,19 @@ public class JPanelListeRapport extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 70, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3)
-                        .addContainerGap())
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton3))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -153,38 +172,33 @@ public class JPanelListeRapport extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        //getPanelDetailRapport()
         getPanelParent().setSelectedIndex(1);
+        
+        
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        int valueRefresh = getMetierListeRV().afficherRPVisiteurs();
-        switch (valueRefresh){
-            case 0 :
-                
-                break;
-            case 2 :
-                DefaultTableModel model = (DefaultTableModel) getjTable2().getModel();
-                model.setRowCount(0);
-                getMetierListeRV().getListeRapportVisite().forEach((rapport) -> {
-                    ;
-
-                    model.addRow(new Object[]{new SimpleDateFormat("dd/MM/yyyy").format(rapport.getDateRapport().getTime()), rapport.getPraticienRapport().getNom() + " " + rapport.getPraticienRapport().getPrenom(),rapport.getMotifRapport(),rapport.getBilanRapport()});
-                });
-                break;
-            default :
-                
-                break;
-        
-        }
+        refresh();
         
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:        
+        getPanelParent().insertTab("Connexion", null, panelCo, TOOL_TIP_TEXT_KEY, 0);
+        getPanelParent().setEnabledAt(1, false);
+        getPanelParent().setBackgroundAt(1, Color.darkGray);
+        getPanelParent().setForegroundAt(1, Color.LIGHT_GRAY);
+        getPanelParent().setEnabledAt(2, false);
+        getPanelParent().setBackgroundAt(2, Color.darkGray);
+        getPanelParent().setForegroundAt(2, Color.LIGHT_GRAY);
+        getPanelParent().setSelectedIndex(0);
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -203,5 +217,24 @@ public class JPanelListeRapport extends javax.swing.JPanel {
         this.jTable2 = jTable2;
     }
 
- 
+    public void refresh(){
+     int valueRefresh = getMetierListeRV().afficherRPVisiteurs();
+        switch (valueRefresh){
+            case 0 :
+                
+                break;
+            case 2 :
+                DefaultTableModel model = (DefaultTableModel) getjTable2().getModel();
+                model.setRowCount(0);
+                getMetierListeRV().getListeRapportVisite().forEach((rapport) -> {
+                    model.addRow(new Object[]{new SimpleDateFormat("dd/MM/yyyy").format(rapport.getDateRapport().getTime()), rapport.getPraticienRapport().getNom() + " " + rapport.getPraticienRapport().getPrenom(),rapport.getMotifRapport(),rapport.getBilanRapport()});
+                });
+                break;
+            default :
+                
+                break;
+        
+        }
+    
+    }
 }
