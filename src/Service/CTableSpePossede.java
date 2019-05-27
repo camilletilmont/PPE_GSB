@@ -261,14 +261,14 @@ public class CTableSpePossede {
          //tableSpePossede.modifierSpePossede(spePossede, praticien);
          //tableSpePossede.printSpePossede(tableSpePossede.lire1SpePossede("1", "3"));
          //tableSpePossede.printSpePossede(tableSpePossede.lireSpePossedes());
-//         CTableSpePossede tableSpePossede = new CTableSpePossede();
-//         ArrayList<CSpecialite> listSpe = new CTableSpecialite().lireSpecialites();
-//         
-//         ArrayList<CPraticien> listPra = new CTablePraticien().lirePraticiens();
-//         
-//         for(int x = 0;x <= 60;x++){
-//         tableSpePossede.insererSpePossede(new CSpePossede("Docteur", (int)(Math.random() * ((10) + 1)), listSpe.get((int)(Math.random() * ((6) + 1)))),listPra.get(x));
-//         }
+         CTableSpePossede tableSpePossede = new CTableSpePossede();
+         ArrayList<CSpecialite> listSpe = new CTableSpecialite().lireSpecialites();
+         
+         ArrayList<CPraticien> listPra = new CTablePraticien().lirePraticiens();
+         
+         for(int x = 60;x <= 70;x++){
+         tableSpePossede.insererSpePossede(new CSpePossede("Docteur", (int)(Math.random() * ((10) + 1)), listSpe.get((int)(Math.random() * ((6) + 1)))),listPra.get(x));
+         }
      }
    
     
