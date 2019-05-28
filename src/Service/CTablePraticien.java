@@ -296,41 +296,41 @@ public class CTablePraticien {
          //tablePraticien.printPraticiens(tablePraticien.lirePraticiens());
          
          
-         String nom[] = {"Matisse", "Van Huten", "Copola", "Spinrad", "Douchet", "Azerty", "Van Gogh", "De Vinci", "Curiosity", "Demeter"};
-         String prenom[] = {"Jacques", "Henrie", "Franck", "Viviane", "Mathias", "Georgette", "Clayton", "Blouge", "Elijah", "Anna"};
-         String typeRue[] = {"rue", "avenue", "boulevard", "venelle", "route", "chemin", "place", "square", "boulevard", "carrefour"};
-         String nomRue[] = {"clos clochet", "de marmonette", "Klosto", "Ploula", "de la marine", "de l oublie", "des autres", "Joliot Curie", "avant", "Claude Sauterne"};
-         String ville[] = {"Rennes", "Valence", "Fecamp", "MonJardin", "Alambra", "Blosasc", "La Trinite", "Saint Sauveur", "Quintin", "Treguier"};
-         
-         for(int x = 0; x < 20;x ++){
-             CTablePraticien tablePraticien = new CTablePraticien();
-             String name = nom[(int)(Math.random() * ((9) + 1))];
-             String lastN = prenom[(int)(Math.random() * ((9) + 1))];
-             String numeroRue = Integer.toString((int)(Math.random() * ((399) + 1)));
-             String codeP = Integer.toString((int)(Math.random() * ((97000-10000) + 1)));
-             String streetType = typeRue[(int)(Math.random() * ((9) + 1))];
-             String streetName = nomRue[(int)(Math.random() * ((9) + 1))];
-             String city = ville[(int)(Math.random() * ((9) + 1))];
-             
-             
-             ArrayList<CTypePraticien> listPra = new CTableTypePraticien().lireTypePraticiens();
-             
-             ArrayList<CSpecialite> listSpe = new CTableSpecialite().lireSpecialites();
-             ArrayList<CSpePossede> listPoss = new ArrayList<>();
-             listPoss.add(new CSpePossede("Docteur", (int)(Math.random() * ((9) + 1)), listSpe.get((int)(Math.random() * ((6) + 1)))));
-             
-             
-             int coef = (int)(Math.random() * ((100) + 1));
-             
-             CPraticien praticien = new CPraticien(1, name, lastN, new CAdresse(numeroRue, " "+streetType+" " +streetName, codeP, city), listPra.get((int)(Math.random() * ((6) + 1))), listPoss, coef);
-             
-             
-             
-             
-             tablePraticien.insererPraticien(praticien);
-             
-         
-         }
+//         String nom[] = {"Matisse", "Van Huten", "Copola", "Spinrad", "Douchet", "Azerty", "Van Gogh", "De Vinci", "Curiosity", "Demeter"};
+//         String prenom[] = {"Jacques", "Henrie", "Franck", "Viviane", "Mathias", "Georgette", "Clayton", "Blouge", "Elijah", "Anna"};
+//         String typeRue[] = {"rue", "avenue", "boulevard", "venelle", "route", "chemin", "place", "square", "boulevard", "carrefour"};
+//         String nomRue[] = {"clos clochet", "de marmonette", "Klosto", "Ploula", "de la marine", "de l oublie", "des autres", "Joliot Curie", "avant", "Claude Sauterne"};
+//         String ville[] = {"Rennes", "Valence", "Fecamp", "MonJardin", "Alambra", "Blosasc", "La Trinite", "Saint Sauveur", "Quintin", "Treguier"};
+//         
+//         for(int x = 0; x < 20;x ++){
+//             CTablePraticien tablePraticien = new CTablePraticien();
+//             String name = nom[(int)(Math.random() * ((9) + 1))];
+//             String lastN = prenom[(int)(Math.random() * ((9) + 1))];
+//             String numeroRue = Integer.toString((int)(Math.random() * ((399) + 1)));
+//             String codeP = Integer.toString((int)(Math.random() * ((97000-10000) + 1)));
+//             String streetType = typeRue[(int)(Math.random() * ((9) + 1))];
+//             String streetName = nomRue[(int)(Math.random() * ((9) + 1))];
+//             String city = ville[(int)(Math.random() * ((9) + 1))];
+//             
+//             
+//             ArrayList<CTypePraticien> listPra = new CTableTypePraticien().lireTypePraticiens();
+//             
+//             ArrayList<CSpecialite> listSpe = new CTableSpecialite().lireSpecialites();
+//             ArrayList<CSpePossede> listPoss = new ArrayList<>();
+//             listPoss.add(new CSpePossede("Docteur", (int)(Math.random() * ((9) + 1)), listSpe.get((int)(Math.random() * ((6) + 1)))));
+//             
+//             
+//             int coef = (int)(Math.random() * ((100) + 1));
+//             
+//             CPraticien praticien = new CPraticien(1, name, lastN, new CAdresse(numeroRue, " "+streetType+" " +streetName, codeP, city), listPra.get((int)(Math.random() * ((6) + 1))), listPoss, coef);
+//             
+//             
+//             
+//             
+//             tablePraticien.insererPraticien(praticien);
+//             
+//         
+//         }
          
      }
     

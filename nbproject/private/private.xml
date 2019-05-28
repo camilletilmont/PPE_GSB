@@ -2,6 +2,16 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/Users/camilletilmont/Desktop/BTS_SIO_Kamy/6_Java_POO/Projets/AppGSB_Java_CT/src/Service/CTableInvitation.java</file>
+            <file>file:/Users/camilletilmont/Desktop/BTS_SIO_Kamy/6_Java_POO/Projets/AppGSB_Java_CT/src/Service/CTableSpePossede.java</file>
+            <file>file:/Users/camilletilmont/Desktop/BTS_SIO_Kamy/6_Java_POO/Projets/AppGSB_Java_CT/src/Service/CMetierRV.java</file>
+            <file>file:/Users/camilletilmont/Desktop/BTS_SIO_Kamy/6_Java_POO/Projets/AppGSB_Java_CT/src/Service/CTableVisiteur.java</file>
+            <file>file:/Users/camilletilmont/Desktop/BTS_SIO_Kamy/6_Java_POO/Projets/AppGSB_Java_CT/src/Donnees/CVisiteur.java</file>
+            <file>file:/Users/camilletilmont/Desktop/BTS_SIO_Kamy/6_Java_POO/Projets/AppGSB_Java_CT/src/Service/CTableActiviteCompl.java</file>
+            <file>file:/Users/camilletilmont/Desktop/BTS_SIO_Kamy/6_Java_POO/Projets/AppGSB_Java_CT/src/Service/CTableActiviteRealiser.java</file>
+            <file>file:/Users/camilletilmont/Desktop/BTS_SIO_Kamy/6_Java_POO/Projets/AppGSB_Java_CT/src/Service/CTablePraticien.java</file>
+            <file>file:/Users/camilletilmont/Desktop/BTS_SIO_Kamy/6_Java_POO/Projets/AppGSB_Java_CT/src/Donnees/CInvitation.java</file>
+        </group>
     </open-files>
 </project-private>
