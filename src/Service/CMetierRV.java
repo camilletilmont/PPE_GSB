@@ -89,12 +89,20 @@ public class CMetierRV {
 
         } else if (visiTest.get(0).getNom().equals(nom)) {
             setVisiteur(visiTest.get(0));
+
             return 2;
         } else {
 
             return 3;
 
         }
+        
+        
+    }
+    
+    public void deconnexion(){
+
+    
     }
     
     public void creerRapportVisite(String bilan, String motif,CPraticien pratic){
@@ -104,7 +112,11 @@ public class CMetierRV {
     
     }
     
-    public void lireRapportVisite(){}
+    public void lire1RapportVisite(){
+        
+        
+    
+    }
     
     public void modifierRapportVisite(){}
     

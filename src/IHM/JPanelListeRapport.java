@@ -168,11 +168,14 @@ public class JPanelListeRapport extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        getPanelParent().setSelectedIndex(1);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        //getPanelDetailRapport()
+        DefaultTableModel model = (DefaultTableModel) getjTable2().getModel();
+        
+        getPanelDetailRapport().setCle(getjTable2().getSelectedRow());
         getPanelParent().setSelectedIndex(1);
         
         
@@ -186,7 +189,33 @@ public class JPanelListeRapport extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:        
+        // TODO add your handling code here:  
+        
+        getjTable2().setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Date", "Praticien", "Motif Visite", "Bilan"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        
+        
         getPanelParent().insertTab("Connexion", null, panelCo, TOOL_TIP_TEXT_KEY, 0);
         getPanelParent().setEnabledAt(1, false);
         getPanelParent().setBackgroundAt(1, Color.darkGray);
