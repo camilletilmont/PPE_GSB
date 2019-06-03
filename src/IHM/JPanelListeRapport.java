@@ -6,6 +6,7 @@
 package IHM;
 
 
+import Donnees.CRapportVisite;
 import Service.CMetierRV;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
@@ -176,6 +177,22 @@ public class JPanelListeRapport extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) getjTable2().getModel();
         
         getPanelDetailRapport().setCle(getjTable2().getSelectedRow());
+        CRapportVisite rapportSelect = getMetierListeRV().getListeRapportVisite().get(getjTable2().getSelectedRow());
+        
+        getPanelDetailRapport().getMotifText().setText(rapportSelect.getMotifRapport());
+        getPanelDetailRapport().getMotifText().setEditable(false);
+        getPanelDetailRapport().getBilanText().setText(rapportSelect.getBilanRapport());
+        getPanelDetailRapport().getBilanText().setEditable(false);
+        getPanelDetailRapport().getDateLabel().setText(new SimpleDateFormat("dd/MM/yyyy").format(rapportSelect.getDateRapport().getTime()));
+        getPanelDetailRapport().getNomVisiteurLabel().setText(rapportSelect.getVisiteurRapport().getNom());
+        getPanelDetailRapport().getPraticienComboBox().hide();
+        getPanelDetailRapport().getNomPra().setText(rapportSelect.getPraticienRapport().getNom() + " "+ rapportSelect.getPraticienRapport().getNom());
+        getPanelDetailRapport().getMedocComboBox().hide();
+        getPanelDetailRapport().getQteComboBox().hide();
+        getPanelDetailRapport().getjButton3().hide();
+        getPanelDetailRapport().getjButton2().hide();
+        getPanelDetailRapport().getjButton5().hide();
+        
         getPanelParent().setSelectedIndex(1);
         
         
@@ -256,7 +273,9 @@ public class JPanelListeRapport extends javax.swing.JPanel {
                 DefaultTableModel model = (DefaultTableModel) getjTable2().getModel();
                 model.setRowCount(0);
                 getMetierListeRV().getListeRapportVisite().forEach((rapport) -> {
-                    model.addRow(new Object[]{new SimpleDateFormat("dd/MM/yyyy").format(rapport.getDateRapport().getTime()), rapport.getPraticienRapport().getNom() + " " + rapport.getPraticienRapport().getPrenom(),rapport.getMotifRapport(),rapport.getBilanRapport()});
+                    model.addRow(new Object[]{new SimpleDateFormat("dd/MM/yyyy").format(rapport.getDateRapport().getTime()),
+                        rapport.getPraticienRapport().getNom() + " " + rapport.getPraticienRapport().getPrenom(),
+                        rapport.getMotifRapport(),rapport.getBilanRapport()});
                 });
                 break;
             default :
