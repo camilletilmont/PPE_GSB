@@ -186,7 +186,15 @@ public class JPanelListeRapport extends javax.swing.JPanel {
         getPanelDetailRapport().getDateLabel().setText(new SimpleDateFormat("dd/MM/yyyy").format(rapportSelect.getDateRapport().getTime()));
         getPanelDetailRapport().getNomVisiteurLabel().setText(rapportSelect.getVisiteurRapport().getNom());
         getPanelDetailRapport().getPraticienComboBox().hide();
-        getPanelDetailRapport().getNomPra().setText(rapportSelect.getPraticienRapport().getNom() + " "+ rapportSelect.getPraticienRapport().getNom());
+        getPanelDetailRapport().getNomPra().setText(rapportSelect.getPraticienRapport().getNom() + " "+ rapportSelect.getPraticienRapport().getPrenom());
+        
+         DefaultTableModel modelEchan = (DefaultTableModel) getPanelDetailRapport().getEchantillonTab().getModel();
+                modelEchan.setRowCount(0);
+                getMetierListeRV().getListeLectureEchantillion().forEach((echantillon) -> {
+                    modelEchan.addRow(new Object[]{echantillon.getMedicamentEchantillon().getNomCommercial(), echantillon.getQuantiteEchantillon()});
+                });
+        
+        
         getPanelDetailRapport().getMedocComboBox().hide();
         getPanelDetailRapport().getQteComboBox().hide();
         getPanelDetailRapport().getjButton3().hide();
