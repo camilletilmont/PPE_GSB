@@ -174,36 +174,20 @@ public class JPanelListeRapport extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) getjTable2().getModel();
         
-        getPanelDetailRapport().setCle(getjTable2().getSelectedRow());
+        
+        
         CRapportVisite rapportSelect = getMetierListeRV().getListeRapportVisite().get(getjTable2().getSelectedRow());
-        
-        getPanelDetailRapport().getMotifText().setText(rapportSelect.getMotifRapport());
-        getPanelDetailRapport().getMotifText().setEditable(false);
-        getPanelDetailRapport().getBilanText().setText(rapportSelect.getBilanRapport());
-        getPanelDetailRapport().getBilanText().setEditable(false);
-        getPanelDetailRapport().getDateLabel().setText(new SimpleDateFormat("dd/MM/yyyy").format(rapportSelect.getDateRapport().getTime()));
-        getPanelDetailRapport().getNomVisiteurLabel().setText(rapportSelect.getVisiteurRapport().getNom());
-        getPanelDetailRapport().getPraticienComboBox().hide();
-        getPanelDetailRapport().getNomPra().setText(rapportSelect.getPraticienRapport().getNom() + " "+ rapportSelect.getPraticienRapport().getPrenom());
-        
-         DefaultTableModel modelEchan = (DefaultTableModel) getPanelDetailRapport().getEchantillonTab().getModel();
-                modelEchan.setRowCount(0);
-                getMetierListeRV().getListeLectureEchantillion().forEach((echantillon) -> {
-                    modelEchan.addRow(new Object[]{echantillon.getMedicamentEchantillon().getNomCommercial(), echantillon.getQuantiteEchantillon()});
-                });
+        getPanelDetailRapport().refreshRapportUnique(rapportSelect.getIdRapportVisite());
         
         
-        getPanelDetailRapport().getMedocComboBox().hide();
-        getPanelDetailRapport().getQteComboBox().hide();
-        getPanelDetailRapport().getjButton3().hide();
-        getPanelDetailRapport().getjButton2().hide();
-        getPanelDetailRapport().getjButton5().hide();
-        
-        getPanelParent().setSelectedIndex(1);
-        
-        
+       getPanelParent().setSelectedIndex(1);
+       getPanelParent().setEnabledAt(0, false);
+       getPanelParent().setBackgroundAt(0, Color.darkGray);
+       getPanelParent().setForegroundAt(0, Color.LIGHT_GRAY);
+       getPanelParent().setEnabledAt(1, false);
+        getPanelParent().setBackgroundAt(1, Color.lightGray);
+        getPanelParent().setForegroundAt(1, Color.black);
         
     }//GEN-LAST:event_jButton2ActionPerformed
 

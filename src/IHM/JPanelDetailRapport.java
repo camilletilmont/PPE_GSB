@@ -5,13 +5,18 @@
  */
 package IHM;
 
+import Donnees.CRapportVisite;
 import Service.CMetierRV;
+import java.awt.Color;
+import java.text.SimpleDateFormat;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -29,6 +34,24 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
     
      protected CMetierRV metierDetailRV;
      protected int cle;
+     protected CRapportVisite rapportUnique;
+     protected JTabbedPane panelGeneral;
+
+    public JTabbedPane getPanelGeneral() {
+        return panelGeneral;
+    }
+
+    public void setPanelGeneral(JTabbedPane panelGeneral) {
+        this.panelGeneral = panelGeneral;
+    }
+
+    public CRapportVisite getRapportUnique() {
+        return rapportUnique;
+    }
+
+    public void setRapportUnique(CRapportVisite rapportUnique) {
+        this.rapportUnique = rapportUnique;
+    }
 
     public int getCle() {
         return cle;
@@ -105,6 +128,11 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
         echantListLabel.setText("Liste d'échantillons offerts");
 
         jButton1.setText("Modifer");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Enregistrer");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -116,8 +144,18 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
         MedocComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButton3.setText("Ajout Echantillon");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Supprimer Echantillon");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         labelPra.setText("Praticien :");
 
@@ -227,7 +265,32 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        if(jButton2.getText().equalsIgnoreCase("Enregistrer")){
+        
+        
+        }else if(jButton2.getText().equalsIgnoreCase("Ok")){
+            getPanelGeneral().setEnabledAt(0, true);
+            getPanelGeneral().setBackgroundAt(0, Color.lightGray);
+            getPanelGeneral().setForegroundAt(0, Color.black);
+            getPanelGeneral().setSelectedIndex(0);
+        }
+            
+            
+        
+        
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     
     
@@ -400,6 +463,42 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
     
 
    
+    public void refreshRapportUnique(int id){
+    
+        
+        
+        this.cle = id;
+        int value1Rapport = getMetierDetailRV().lire1RV(Integer.toString(id));
+        
+        if(value1Rapport == 2){
+        this.rapportUnique = getMetierDetailRV().getRapportV1();
+        getMotifText().setText(rapportUnique.getMotifRapport());
+        getMotifText().setEditable(false);
+        getBilanText().setText(rapportUnique.getBilanRapport());
+        getBilanText().setEditable(false);
+        getDateLabel().setText(new SimpleDateFormat("dd/MM/yyyy").format(rapportUnique.getDateRapport().getTime()));
+        getNomVisiteurLabel().setText(rapportUnique.getVisiteurRapport().getNom());
+        getPraticienComboBox().hide();
+        getNomPra().setText(rapportUnique.getPraticienRapport().getNom() + " "+ rapportUnique.getPraticienRapport().getPrenom());
+        
+         DefaultTableModel modelEchan = (DefaultTableModel) getEchantillonTab().getModel();
+                modelEchan.setRowCount(0);
+                rapportUnique.getListeEchantillonRapport().forEach((echantillon) -> {
+                    modelEchan.addRow(new Object[]{echantillon.getMedicamentEchantillon().getNomCommercial(), echantillon.getQuantiteEchantillon()});
+                });
+        
+        
+        getMedocComboBox().hide();
+        getQteComboBox().hide();
+        getjButton3().hide();
+        getjButton2().setText("Ok");
+        getjButton5().hide();
+        }
+        
+        
+    
+    }
+    
    
     
 }

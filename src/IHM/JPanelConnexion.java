@@ -135,9 +135,6 @@ public class JPanelConnexion extends javax.swing.JPanel {
                 getPanelParent().setBackgroundAt(1, Color.lightGray);
                 getPanelParent().setForegroundAt(1, Color.black);
                 getPanelListRapport().refresh();
-                getPanelParent().setEnabledAt(2, true);
-                getPanelParent().setBackgroundAt(2, Color.lightGray);
-                getPanelParent().setForegroundAt(2, Color.black);
                 
                 getPanelParent().removeTabAt(0);
 

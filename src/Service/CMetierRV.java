@@ -24,6 +24,24 @@ public class CMetierRV {
     protected ArrayList<CRapportVisite> listeRapportVisite;
     protected ArrayList<CPraticien> listPraticien;
     protected ArrayList<CEchantillon> listeLectureEchantillion;
+    protected CTableRapportVisite tableRV;
+
+    public CRapportVisite getRapportV1() {
+        return rapportV1;
+    }
+
+    public void setRapportV1(CRapportVisite rapportV1) {
+        this.rapportV1 = rapportV1;
+    }
+    protected CRapportVisite rapportV1;
+
+    public CTableRapportVisite getTableRV() {
+        return tableRV;
+    }
+
+    public void setTableRV(CTableRapportVisite tableRV) {
+        this.tableRV = tableRV;
+    }
 
    
    
@@ -70,6 +88,7 @@ public class CMetierRV {
         setListPraticien(tablePratic.lirePraticiens());
         CTableEchantillon tableLectureEchantillon = new CTableEchantillon();
         setListeLectureEchantillion(tableLectureEchantillon.lireEchantillon());
+        this.tableRV = new CTableRapportVisite();
         
         
     }
@@ -112,10 +131,18 @@ public class CMetierRV {
     
     }
     
-    public void lire1RapportVisite(){
+    public int lire1RV(String numero){
         
         
-    
+        ArrayList<CRapportVisite> rapportTest = getTableRV().lire1RapportVisite("RAP_NUM_RAPPORT_VISITE", numero);
+        
+        if(rapportTest.isEmpty()){
+        
+        return 0;
+        }else{
+        setRapportV1(getTableRV().lire1RapportVisite("RAP_NUM_RAPPORT_VISITE", numero).get(0));
+        return 2;
+        }
     }
     
     public void modifierRapportVisite(){}
