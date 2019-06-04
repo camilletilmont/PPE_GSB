@@ -6,6 +6,7 @@
 package Service;
 
 import Donnees.CEchantillon;
+import Donnees.CMedicament;
 import Donnees.CPraticien;
 import Donnees.CRapportVisite;
 import Donnees.CVisiteur;
@@ -23,8 +24,30 @@ public class CMetierRV {
     protected CVisiteur visiteur;
     protected ArrayList<CRapportVisite> listeRapportVisite;
     protected ArrayList<CPraticien> listPraticien;
-    protected ArrayList<CEchantillon> listeLectureEchantillion;
+    protected ArrayList<CMedicament> listeMedicaments;
+    protected CTableEchantillon tableEchan;
+    protected ArrayList<CEchantillon> listEchan;
     protected CTableRapportVisite tableRV;
+    protected CRapportVisite rapportV1;
+
+    
+    
+    public ArrayList<CEchantillon> getListEchan() {
+        return listEchan;
+    }
+
+    public void setListEchan(ArrayList<CEchantillon> listEchan) {
+        this.listEchan = listEchan;
+    }
+    
+    public CTableEchantillon getTableEchan() {
+        return tableEchan;
+    }
+
+    public void setTableEchan(CTableEchantillon tableEchan) {
+        this.tableEchan = tableEchan;
+    }
+    
 
     public CRapportVisite getRapportV1() {
         return rapportV1;
@@ -33,7 +56,7 @@ public class CMetierRV {
     public void setRapportV1(CRapportVisite rapportV1) {
         this.rapportV1 = rapportV1;
     }
-    protected CRapportVisite rapportV1;
+    
 
     public CTableRapportVisite getTableRV() {
         return tableRV;
@@ -72,12 +95,12 @@ public class CMetierRV {
         this.listPraticien = listPraticien;
     }
 
-    public ArrayList<CEchantillon> getListeLectureEchantillion() {
-        return listeLectureEchantillion;
+    public ArrayList<CMedicament> getListeMedicaments() {
+        return listeMedicaments;
     }
 
-    public final void setListeLectureEchantillion(ArrayList<CEchantillon> listeLectureEchantillion) {
-        this.listeLectureEchantillion = listeLectureEchantillion;
+    public final void setListeMedicaments(ArrayList<CMedicament> listeMedoc) {
+        this.listeMedicaments = listeMedoc;
     }
 
 
@@ -86,8 +109,9 @@ public class CMetierRV {
     public CMetierRV(){
         CTablePraticien tablePratic = new CTablePraticien();
         setListPraticien(tablePratic.lirePraticiens());
-        CTableEchantillon tableLectureEchantillon = new CTableEchantillon();
-        setListeLectureEchantillion(tableLectureEchantillon.lireEchantillon());
+        CTableMedicament tableLectureMedoc = new CTableMedicament();
+        setListeMedicaments(tableLectureMedoc.lireMedicament());
+        this.tableEchan = new CTableEchantillon();
         this.tableRV = new CTableRapportVisite();
         
         
@@ -140,14 +164,20 @@ public class CMetierRV {
         
         return 0;
         }else{
-        setRapportV1(getTableRV().lire1RapportVisite("RAP_NUM_RAPPORT_VISITE", numero).get(0));
+        setRapportV1(rapportTest.get(0));
         return 2;
         }
     }
     
+    
+   
+    
     public void modifierRapportVisite(){}
     
     public void supprimerRapportVisite(){}
+    
+    
+    public void ajouterMedicOffert(){}
     
     public int afficherRPVisiteurs(){
        CTableRapportVisite tableRP = new CTableRapportVisite();

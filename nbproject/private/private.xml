@@ -2,6 +2,17 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/Users/camilletilmont/Desktop/BTS_SIO_Kamy/6_Java_POO/Projets/AppGSB_Java_CT/src/Service/CMetierRV.java</file>
+            <file>file:/Users/camilletilmont/Desktop/BTS_SIO_Kamy/6_Java_POO/Projets/AppGSB_Java_CT/src/IHM/JPanelDetailRapport.java</file>
+            <file>file:/Users/camilletilmont/Desktop/BTS_SIO_Kamy/6_Java_POO/Projets/AppGSB_Java_CT/src/Service/CTableVisiteur.java</file>
+            <file>file:/Users/camilletilmont/Desktop/BTS_SIO_Kamy/6_Java_POO/Projets/AppGSB_Java_CT/src/App/CApp.java</file>
+            <file>file:/Users/camilletilmont/Desktop/BTS_SIO_Kamy/6_Java_POO/Projets/AppGSB_Java_CT/src/Donnees/CVisiteur.java</file>
+            <file>file:/Users/camilletilmont/Desktop/BTS_SIO_Kamy/6_Java_POO/Projets/AppGSB_Java_CT/src/IHM/JFrameRapportVisite.java</file>
+            <file>file:/Users/camilletilmont/Desktop/BTS_SIO_Kamy/6_Java_POO/Projets/AppGSB_Java_CT/src/IHM/JPanelListeRapport.java</file>
+            <file>file:/Users/camilletilmont/Desktop/BTS_SIO_Kamy/6_Java_POO/Projets/AppGSB_Java_CT/src/IHM/JPanelConnexion.java</file>
+            <file>file:/Users/camilletilmont/Desktop/BTS_SIO_Kamy/6_Java_POO/Projets/AppGSB_Java_CT/src/Donnees/CRapportVisite.java</file>
+            <file>file:/Users/camilletilmont/Desktop/BTS_SIO_Kamy/6_Java_POO/Projets/AppGSB_Java_CT/src/Service/CTableRapportVisite.java</file>
+        </group>
     </open-files>
 </project-private>
