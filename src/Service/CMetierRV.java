@@ -17,10 +17,8 @@ import java.util.ArrayList;
  * @author camilletilmont
  */
 public class CMetierRV {
-    
 
     //attributs
-    
     protected CVisiteur visiteur;
     protected ArrayList<CRapportVisite> listeRapportVisite;
     protected ArrayList<CPraticien> listPraticien;
@@ -30,8 +28,6 @@ public class CMetierRV {
     protected CTableRapportVisite tableRV;
     protected CRapportVisite rapportV1;
 
-    
-    
     public ArrayList<CEchantillon> getListEchan() {
         return listEchan;
     }
@@ -39,7 +35,7 @@ public class CMetierRV {
     public void setListEchan(ArrayList<CEchantillon> listEchan) {
         this.listEchan = listEchan;
     }
-    
+
     public CTableEchantillon getTableEchan() {
         return tableEchan;
     }
@@ -47,7 +43,6 @@ public class CMetierRV {
     public void setTableEchan(CTableEchantillon tableEchan) {
         this.tableEchan = tableEchan;
     }
-    
 
     public CRapportVisite getRapportV1() {
         return rapportV1;
@@ -56,7 +51,6 @@ public class CMetierRV {
     public void setRapportV1(CRapportVisite rapportV1) {
         this.rapportV1 = rapportV1;
     }
-    
 
     public CTableRapportVisite getTableRV() {
         return tableRV;
@@ -66,11 +60,7 @@ public class CMetierRV {
         this.tableRV = tableRV;
     }
 
-   
-   
-
     //getter et setter
-    
     public CVisiteur getVisiteur() {
         return visiteur;
     }
@@ -103,23 +93,18 @@ public class CMetierRV {
         this.listeMedicaments = listeMedoc;
     }
 
-
     //constructeur
-    
-    public CMetierRV(){
+    public CMetierRV() {
         CTablePraticien tablePratic = new CTablePraticien();
         setListPraticien(tablePratic.lirePraticiens());
         CTableMedicament tableLectureMedoc = new CTableMedicament();
         setListeMedicaments(tableLectureMedoc.lireMedicament());
         this.tableEchan = new CTableEchantillon();
         this.tableRV = new CTableRapportVisite();
-        
-        
+
     }
-    
+
     //methodes
-    
-    
     public int connexion(String id, String nom) {
         CTableVisiteur tableVisit = new CTableVisiteur();
         ArrayList<CVisiteur> visiTest = tableVisit.lire1Visiteurs("VIS_MATRICULE_VISITEUR", id);
@@ -139,57 +124,75 @@ public class CMetierRV {
             return 3;
 
         }
-        
-        
-    }
-    
-    public void deconnexion(){
 
-    
     }
-    
-    public void creerRapportVisite(String bilan, String motif,CPraticien pratic){
-    
-        
-    //rapportVisite = new CRapportVisite(0, new GregorianCalendar(), bilan, motif, getVisiteur(), pratic, listEchantillonRap, listMedicamentPresRap);
-    
+
+    public void deconnexion() {
+
     }
-    
-    public int lire1RV(String numero){
-        
-        
+
+    public void creerRapportVisite(CRapportVisite rapportInsert) {
+
+        try {
+            tableRV.insererRapportVisite(rapportInsert);
+            try {
+                CRapportVisite rapportTempId = tableRV.lireDernierRapportVisite();
+
+                if (rapportInsert.equals(rapportTempId)) {
+                    for (int a = 0; a < rapportTempId.getListeEchantillonRapport().size(); a++) {
+
+                        try {
+                            tableEchan.insererEchantillon(rapportTempId.getListeEchantillonRapport().get(a), rapportInsert);
+                        } catch (Exception ex) {
+                            System.out.println("Insertion Echantillon n° " + a + " IHM = null");
+                        }
+
+                    }
+                }
+
+            } catch (Exception ex) {
+                System.out.println("Lecture dernier RV IHM = null");
+            }
+
+        } catch (Exception ex) {
+            System.out.println("Insertion RV IHM = null");
+        }
+
+    }
+
+    public int lire1RV(String numero) {
+
         ArrayList<CRapportVisite> rapportTest = getTableRV().lire1RapportVisite("RAP_NUM_RAPPORT_VISITE", numero);
-        
-        if(rapportTest.isEmpty()){
-        
-        return 0;
-        }else{
-        setRapportV1(rapportTest.get(0));
-        return 2;
+
+        if (rapportTest.isEmpty()) {
+
+            return 0;
+        } else {
+            setRapportV1(rapportTest.get(0));
+            return 2;
         }
     }
-    
-    
-   
-    
-    public void modifierRapportVisite(){}
-    
-    public void supprimerRapportVisite(){}
-    
-    
-    public void ajouterMedicOffert(){}
-    
-    public int afficherRPVisiteurs(){
-       CTableRapportVisite tableRP = new CTableRapportVisite();
-       ArrayList<CRapportVisite> rapportsTest = tableRP.lire1RapportVisite("VIS_MATRICULE_VISITEUR", getVisiteur().getMatricule());
-       
-       if(rapportsTest.isEmpty()){
-           return 0;
-       }else{
-        setListeRapportVisite(rapportsTest);
-        return 2;
-       
-       }
+
+    public void modifierRapportVisite() {
     }
-    
+
+    public void supprimerRapportVisite() {
+    }
+
+    public void ajouterMedicOffert() {
+    }
+
+    public int afficherRPVisiteurs() {
+        CTableRapportVisite tableRP = new CTableRapportVisite();
+        ArrayList<CRapportVisite> rapportsTest = tableRP.lire1RapportVisite("VIS_MATRICULE_VISITEUR", getVisiteur().getMatricule());
+
+        if (rapportsTest.isEmpty()) {
+            return 0;
+        } else {
+            setListeRapportVisite(rapportsTest);
+            return 2;
+
+        }
+    }
+
 }

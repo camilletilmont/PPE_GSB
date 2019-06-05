@@ -228,6 +228,28 @@ public class CTableRapportVisite {
         return null;
     }
      
+     
+     //lire la dernière entrée de la table
+     
+     public CRapportVisite lireDernierRapportVisite() {
+        if (bdd.connecter() == true) {
+            CRapportVisite rapports;
+            ResultSet rs = bdd.executerRequeteQuery("SELECT * FROM RAPPORT_VISITE ORDER BY `RAP_NUM_RAPPORT_VISITE` DESC LIMIT 1");
+            
+                
+                    rapports = convertir_RS_RapportVisite(rs);
+                    
+                
+            
+            bdd.deconnecter();
+            
+            return rapports;
+        } else {
+            System.out.println("Connexion manipBdd.RAPPORT_VISITE KO");
+        }
+        return null;
+    }
+     
      //methode permettant de lire certaines entrées de la table, certains RapportVisites,
      //en fonction l'information souhaitée.
      

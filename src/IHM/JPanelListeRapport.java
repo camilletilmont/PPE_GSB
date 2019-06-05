@@ -263,6 +263,10 @@ public class JPanelListeRapport extends javax.swing.JPanel {
                 break;
         
         }
+        
+        getPanelParent().setEnabledAt(1, false);
+        getPanelParent().setBackgroundAt(1, Color.darkGray);
+        getPanelParent().setForegroundAt(1, Color.LIGHT_GRAY);
     
     }
 }
