@@ -11,13 +11,15 @@ import Donnees.CPraticien;
 import Donnees.CRapportVisite;
 import Donnees.CVisiteur;
 import Service.CMetierRV;
-import Service.CTableRapportVisite;
 import java.awt.Color;
-import java.sql.Date;
+import java.text.ParseException;
+import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -39,15 +41,14 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
      */
     public JPanelDetailRapport() {
         initComponents();
-        
+
     }
 
-    
-     protected CMetierRV metierDetailRV;
-     protected int cle;
-     protected CRapportVisite rapportUnique;
-     protected JTabbedPane panelGeneral;
-     protected JPanelListeRapport panelList;
+    protected CMetierRV metierDetailRV;
+    protected int cle;
+    protected CRapportVisite rapportUnique;
+    protected JTabbedPane panelGeneral;
+    protected JPanelListeRapport panelList;
 
     public JPanelListeRapport getPanelList() {
         return panelList;
@@ -88,7 +89,7 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
     public void setMetierDetailRV(CMetierRV metier) {
         this.metierDetailRV = metier;
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -121,6 +122,7 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        buttonAnnuler = new javax.swing.JButton();
 
         motifText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -194,6 +196,13 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
 
         jLabel6.setText("Quantité :");
 
+        buttonAnnuler.setText("Annuler");
+        buttonAnnuler.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAnnulerActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -229,6 +238,7 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
                             .addComponent(jScrollPane1))
                         .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -239,8 +249,9 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
                                 .addGap(70, 70, 70)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(QteComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)))
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(buttonAnnuler, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -276,13 +287,7 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
                     .addComponent(jLabel5)
                     .addComponent(echantListLabel))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(MedocComboBox, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
@@ -290,7 +295,14 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonAnnuler))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -301,93 +313,106 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        if(jButton2.getText().equalsIgnoreCase("Enregistrer")){
-            
+        if (jButton2.getText().equalsIgnoreCase("Enregistrer")) {
+
             int id = 0;
             GregorianCalendar gb = new GregorianCalendar();
-            gb.setTime(Date.valueOf(getDateLabel().getText()));
+            SimpleDateFormat format = new SimpleDateFormat("dd/mm/yyyy");
+            Date date;
+            try {
+                date = format.parse(getDateLabel().getText());
+                gb.setTime(date);
+            } catch (ParseException ex) {
+                Logger.getLogger(JPanelDetailRapport.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
             String bilan = getBilanText().getText();
             String motif = getMotifText().getText();
             CVisiteur visit = getMetierDetailRV().getVisiteur();
-            
-            ArrayList<CEchantillon> listEchantillonsNewRapport = new ArrayList<>();
-            
-            for (int y = 0; y < getEchantillonTab().getRowCount(); y++) {
-            for (int x = 0; x < getMetierDetailRV().getListeMedicaments().size(); x++) {
-                if(getEchantillonTab().getModel().getValueAt(y, 0).toString().equals(getMetierDetailRV().getListeMedicaments().get(x).getNomCommercial())){
-                    
-                    CEchantillon echanTemp = new CEchantillon(getMetierDetailRV().getListeMedicaments().get(x), (int) getEchantillonTab().getModel().getValueAt(y,1));
-                    
-                    listEchantillonsNewRapport.add(echanTemp);
-                
-                }
-            }
-        }
-            
 
-            
-            CPraticien prat = null;
-            for(int z = 0;z < getMetierDetailRV().getListPraticien().size();z++){
-                String pratTemp = getMetierDetailRV().getListPraticien().get(z).getNom() + " " + getMetierDetailRV().getListPraticien().get(z).getPrenom();
-                
-                if(getNomPra().getText().equals(pratTemp)){
-                prat = getMetierDetailRV().getListPraticien().get(z);
-                
+            ArrayList<CEchantillon> listEchantillonsNewRapport = new ArrayList<>();
+
+            for (int y = 0; y < getEchantillonTab().getRowCount(); y++) {
+                for (int x = 0; x < getMetierDetailRV().getListeMedicaments().size(); x++) {
+                    if (getEchantillonTab().getModel().getValueAt(y, 0).toString().equals(getMetierDetailRV().getListeMedicaments().get(x).getNomCommercial())) {
+
+                        int l = Integer.parseInt(getEchantillonTab().getModel().getValueAt(y, 1).toString());
+                        CEchantillon echanTemp = new CEchantillon(getMetierDetailRV().getListeMedicaments().get(x), l);
+
+                        listEchantillonsNewRapport.add(echanTemp);
+
+                    }
                 }
-            
-            
             }
-            
+
+            CPraticien prat = null;
+            for (int z = 0; z < getMetierDetailRV().getListPraticien().size(); z++) {
+                int pratTemp = getMetierDetailRV().getListPraticien().get(z).getIdPraticien();
+
+                String praticienSelect = getPraticienComboBox().getSelectedItem().toString();
+
+                String idTemp = praticienSelect.substring(0, praticienSelect.indexOf("-"));
+
+                if (idTemp.equals(Integer.toString(pratTemp))) {
+                    prat = getMetierDetailRV().getListPraticien().get(z);
+
+                }
+
+            }
+
             ArrayList<CMedicament> listMedVide = new ArrayList<>();
 
-            if(!listEchantillonsNewRapport.isEmpty() && prat != null){
-            
-            getMetierDetailRV().creerRapportVisite(new CRapportVisite(id, gb, bilan, motif, visit, prat, listEchantillonsNewRapport, listMedVide));
+            if (!listEchantillonsNewRapport.isEmpty() && prat != null) {
+
+                getMetierDetailRV().creerRapportVisite(new CRapportVisite(id, gb, bilan, motif, visit, prat, listEchantillonsNewRapport, listMedVide));
+
+            } else {
+                System.out.println(prat.getNom() + " " + listEchantillonsNewRapport.get(0).getMedicamentEchantillon().getNomCommercial());
+                System.out.println("Erreur insertion RV IHM 'enregistrer' nouveau rapport");
             }
-                 
+
             getPanelGeneral().setEnabledAt(0, true);
             getPanelGeneral().setBackgroundAt(0, Color.lightGray);
-            getPanelGeneral().setForegroundAt(0, Color.black);
+            getPanelGeneral().setForegroundAt(0, Color.white);
             getPanelGeneral().setSelectedIndex(0);
-                    
-                    
-        
-        }else if(jButton2.getText().equalsIgnoreCase("Ok")){
+
+        } else if (jButton2.getText().equalsIgnoreCase("Ok")) {
             getPanelGeneral().setEnabledAt(0, true);
             getPanelGeneral().setBackgroundAt(0, Color.lightGray);
-            getPanelGeneral().setForegroundAt(0, Color.black);
+            getPanelGeneral().setForegroundAt(0, Color.white);
             getPanelGeneral().setSelectedIndex(0);
-            
+
         }
-            
-            getPanelList().refresh();
         
+        getMedocComboBox().setSelectedIndex(0);
+        getQteComboBox().setSelectedIndex(0);
         
+        getPanelList().refresh();
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-         DefaultTableModel modelEchan = (DefaultTableModel) getEchantillonTab().getModel();
-               boolean exist = false;
-               for(int a = 0;a < getEchantillonTab().getRowCount();a++){
-                   if(getMedocComboBox().getSelectedItem().equals(modelEchan.getValueAt(a, 0))){
-                   
-                   exist = true;
-                   }
-               
-               } 
-               if(!exist){
-                   modelEchan.addRow(new Object[]{getMedocComboBox().getSelectedItem() , getQteComboBox().getSelectedItem()});
-               }
-        
-        
-        
+        DefaultTableModel modelEchan = (DefaultTableModel) getEchantillonTab().getModel();
+        boolean exist = false;
+        for (int a = 0; a < getEchantillonTab().getRowCount(); a++) {
+            if (getMedocComboBox().getSelectedItem().equals(modelEchan.getValueAt(a, 0))) {
+
+                exist = true;
+            }
+
+        }
+        if (!exist) {
+            modelEchan.addRow(new Object[]{getMedocComboBox().getSelectedItem(), getQteComboBox().getSelectedItem()});
+        }
+
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        
-        
+
         DefaultTableModel modelEchan = (DefaultTableModel) getEchantillonTab().getModel();
         modelEchan.removeRow(getEchantillonTab().getSelectedRow());
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -400,14 +425,29 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_PraticienComboBoxActionPerformed
 
-    
-    
+    private void buttonAnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAnnulerActionPerformed
+        // TODO add your handling code here:
+        
+        
+         getPanelGeneral().setEnabledAt(0, true);
+            getPanelGeneral().setBackgroundAt(0, Color.lightGray);
+            getPanelGeneral().setForegroundAt(0, Color.white);
+            getPanelGeneral().setSelectedIndex(0);
+            
+            getMedocComboBox().setSelectedIndex(0);
+        getQteComboBox().setSelectedIndex(0);
+        
+        getPanelList().refresh();
+
+    }//GEN-LAST:event_buttonAnnulerActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> MedocComboBox;
     private javax.swing.JComboBox<String> PraticienComboBox;
     private javax.swing.JComboBox<String> QteComboBox;
     private javax.swing.JTextArea bilanText;
+    private javax.swing.JButton buttonAnnuler;
     private javax.swing.JLabel dateLabel;
     private javax.swing.JLabel echantListLabel;
     private javax.swing.JTable echantillonTab;
@@ -492,6 +532,14 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
     public void setjButton1(JButton jButton1) {
         this.jButton1 = jButton1;
     }
+    
+    public JButton getButtonAnnuler() {
+        return buttonAnnuler;
+    }
+
+    public void setButtonAnnuler(JButton buttonAnnuler) {
+        this.buttonAnnuler = buttonAnnuler;
+    }
 
     public JButton getjButton2() {
         return jButton2;
@@ -524,7 +572,7 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
     public void setjLabel2(JLabel jLabel2) {
         this.jLabel2 = jLabel2;
     }
-    
+
     public JLabel getjLabel5() {
         return jLabel5;
     }
@@ -540,7 +588,7 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
     public void setjLabel6(JLabel jLabel6) {
         this.jLabel6 = jLabel6;
     }
-    
+
     public JLabel getjLabel3() {
         return jLabel3;
     }
@@ -589,51 +637,45 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
         this.nomVisiteurLabel = nomVisiteurLabel;
     }
 
-    
+    public void refreshRapportUnique(int id) {
 
-   
-    public void refreshRapportUnique(int id){
-    
-        
-        
         this.cle = id;
         int value1Rapport = getMetierDetailRV().lire1RV(Integer.toString(id));
-        
-        if(value1Rapport == 2){
-        this.rapportUnique = getMetierDetailRV().getRapportV1();
-        getMotifText().setText(rapportUnique.getMotifRapport());
-        getMotifText().setEditable(false);
-        getBilanText().setText(rapportUnique.getBilanRapport());
-        getBilanText().setEditable(false);
-        getDateLabel().setText(new SimpleDateFormat("dd/MM/yyyy").format(rapportUnique.getDateRapport().getTime()));
-        getNomVisiteurLabel().setText(rapportUnique.getVisiteurRapport().getNom());
-        getPraticienComboBox().hide();
-        getNomPra().setText(rapportUnique.getPraticienRapport().getNom() + " "+ rapportUnique.getPraticienRapport().getPrenom());
-        
-         DefaultTableModel modelEchan = (DefaultTableModel) getEchantillonTab().getModel();
-                modelEchan.setRowCount(0);
-                rapportUnique.getListeEchantillonRapport().forEach((echantillon) -> {
-                    modelEchan.addRow(new Object[]{echantillon.getMedicamentEchantillon().getNomCommercial(), echantillon.getQuantiteEchantillon()});
-                });
-        
-        
-        getMedocComboBox().hide();
-        getQteComboBox().hide();
-        getjButton3().hide();
-        getjButton2().setText("Ok");
-        getjButton5().hide();
-        getjLabel5().hide();
-        getjLabel6().hide();
-        
+
+        if (value1Rapport == 2) {
+            this.rapportUnique = getMetierDetailRV().getRapportV1();
+            getMotifText().setText(rapportUnique.getMotifRapport());
+            getMotifText().setEditable(false);
+            getBilanText().setText(rapportUnique.getBilanRapport());
+            getBilanText().setEditable(false);
+            getDateLabel().setText(new SimpleDateFormat("dd/MM/yyyy").format(rapportUnique.getDateRapport().getTime()));
+            getNomVisiteurLabel().setText(rapportUnique.getVisiteurRapport().getNom());
+            getPraticienComboBox().hide();
+            getNomPra().show();
+            getNomPra().setText(rapportUnique.getPraticienRapport().getNom() + " " + rapportUnique.getPraticienRapport().getPrenom());
+
+            DefaultTableModel modelEchan = (DefaultTableModel) getEchantillonTab().getModel();
+            modelEchan.setRowCount(0);
+            rapportUnique.getListeEchantillonRapport().forEach((echantillon) -> {
+                modelEchan.addRow(new Object[]{echantillon.getMedicamentEchantillon().getNomCommercial(), echantillon.getQuantiteEchantillon()});
+            });
+
+            getMedocComboBox().hide();
+            getQteComboBox().hide();
+            getjButton1().show();
+            getjButton3().hide();
+            getjButton2().setText("Ok");
+            getjButton5().hide();
+            getjLabel5().hide();
+            getjLabel6().hide();
+            getButtonAnnuler().hide();
+
         }
-        
-        
-    
+
     }
-    
-    
-    public void newRV(){
-    
+
+    public void newRV() {
+
         //this.rapportUnique = getMetierDetailRV().getRapportV1();
         getMotifText().setText("");
         getMotifText().setEditable(true);
@@ -642,23 +684,23 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
         getDateLabel().setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date(new GregorianCalendar(Locale.FRANCE).getTimeInMillis())));
         getNomVisiteurLabel().setText(getMetierDetailRV().getVisiteur().getNom());
         getPraticienComboBox().show();
-        for(int x = 0;x<getMetierDetailRV().getListPraticien().size();x++){
-        
-        getPraticienComboBox().addItem(getMetierDetailRV().getListPraticien().get(x).getNom() + " " + getMetierDetailRV().getListPraticien().get(x).getPrenom());
+        for (int x = 0; x < getMetierDetailRV().getListPraticien().size(); x++) {
+
+            getPraticienComboBox().addItem(getMetierDetailRV().getListPraticien().get(x).getIdPraticien() + "-" + getMetierDetailRV().getListPraticien().get(x).getNom() + " " + getMetierDetailRV().getListPraticien().get(x).getPrenom());
         }
         getNomPra().setText("");
         getNomPra().hide();
-        
-         DefaultTableModel modelEchan = (DefaultTableModel) getEchantillonTab().getModel();
-                modelEchan.setRowCount(0);
-                
-        
-        
+
+        DefaultTableModel modelEchan = (DefaultTableModel) getEchantillonTab().getModel();
+        modelEchan.setRowCount(0);
+
         getMedocComboBox().show();
-        for(int y = 0;y<getMetierDetailRV().getListeMedicaments().size();y++){
-        getMedocComboBox().addItem(getMetierDetailRV().getListeMedicaments().get(y).getNomCommercial());
-        
+        for (int y = 0; y < getMetierDetailRV().getListeMedicaments().size(); y++) {
+            getMedocComboBox().addItem(getMetierDetailRV().getListeMedicaments().get(y).getNomCommercial());
+
         }
+        
+        getNomPra().hide();
         getQteComboBox().show();
         getjButton3().show();
         getjButton2().setText("Enregistrer");
@@ -666,9 +708,8 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
         getjButton1().hide();
         getjLabel5().show();
         getjLabel6().show();
-    
+        getButtonAnnuler().show();
+
     }
-    
-   
-    
+
 }

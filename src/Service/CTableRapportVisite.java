@@ -233,17 +233,19 @@ public class CTableRapportVisite {
      
      public CRapportVisite lireDernierRapportVisite() {
         if (bdd.connecter() == true) {
-            CRapportVisite rapports;
+             ArrayList<CRapportVisite> listeRapports = new ArrayList();
             ResultSet rs = bdd.executerRequeteQuery("SELECT * FROM RAPPORT_VISITE ORDER BY `RAP_NUM_RAPPORT_VISITE` DESC LIMIT 1");
-            
-                
-                    rapports = convertir_RS_RapportVisite(rs);
-                    
-                
-            
+                try {
+                while (rs.next()) {
+                    CRapportVisite RapportVisite = convertir_RS_RapportVisite(rs);
+                    listeRapports.add(RapportVisite);
+                }
+            } catch (SQLException ex) {
+            }
+          
             bdd.deconnecter();
             
-            return rapports;
+            return listeRapports.get(0);
         } else {
             System.out.println("Connexion manipBdd.RAPPORT_VISITE KO");
         }

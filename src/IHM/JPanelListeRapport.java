@@ -178,7 +178,7 @@ public class JPanelListeRapport extends javax.swing.JPanel {
        getPanelParent().setForegroundAt(0, Color.LIGHT_GRAY);
        getPanelParent().setEnabledAt(1, false);
         getPanelParent().setBackgroundAt(1, Color.lightGray);
-        getPanelParent().setForegroundAt(1, Color.black);
+        getPanelParent().setForegroundAt(1, Color.white);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -196,7 +196,7 @@ public class JPanelListeRapport extends javax.swing.JPanel {
        getPanelParent().setForegroundAt(0, Color.LIGHT_GRAY);
        getPanelParent().setEnabledAt(1, false);
         getPanelParent().setBackgroundAt(1, Color.lightGray);
-        getPanelParent().setForegroundAt(1, Color.black);
+        getPanelParent().setForegroundAt(1, Color.white);
         
     }//GEN-LAST:event_jButton2ActionPerformed
 

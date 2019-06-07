@@ -138,17 +138,17 @@ public class CMetierRV {
             try {
                 CRapportVisite rapportTempId = tableRV.lireDernierRapportVisite();
 
-                if (rapportInsert.equals(rapportTempId)) {
-                    for (int a = 0; a < rapportTempId.getListeEchantillonRapport().size(); a++) {
+                
+                    for (int a = 0; a < rapportInsert.getListeEchantillonRapport().size(); a++) {
 
                         try {
-                            tableEchan.insererEchantillon(rapportTempId.getListeEchantillonRapport().get(a), rapportInsert);
+                            tableEchan.insererEchantillon(rapportInsert.getListeEchantillonRapport().get(a), rapportTempId);
                         } catch (Exception ex) {
                             System.out.println("Insertion Echantillon n° " + a + " IHM = null");
                         }
 
                     }
-                }
+                
 
             } catch (Exception ex) {
                 System.out.println("Lecture dernier RV IHM = null");
