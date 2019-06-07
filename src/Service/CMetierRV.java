@@ -173,7 +173,42 @@ public class CMetierRV {
         }
     }
 
-    public void modifierRapportVisite() {
+    public void modifierRapportVisite(CRapportVisite rapportUpdate) {
+        
+        try {
+            tableRV.modifierRapportVisite(rapportUpdate);
+            try {
+                
+
+                
+                    for (int a = 0; a < rapportUpdate.getListeEchantillonRapport().size(); a++) {
+                            boolean test = false;
+                        try {
+                            ArrayList<CEchantillon> listEchan = tableEchan.lire1Echantillon(Integer.toString(rapportUpdate.getIdRapportVisite()));
+                            for(int x = 0; x < listEchan.size();x++){
+                                if(listEchan.get(x).getMedicamentEchantillon().getNomCommercial().equals(rapportUpdate.getListeEchantillonRapport().get(a).getMedicamentEchantillon().getNomCommercial())){
+                            tableEchan.modifierEchantillon(listEchan.get(x), rapportUpdate);
+                                }else{
+                            tableEchan.insererEchantillon(listEchan.get(x), rapportUpdate);
+                                }
+                            }
+                        } catch (Exception ex) {
+                            System.out.println("Mise à jour Echantillon n° " + a + " IHM = null");
+                        }
+
+                    }
+                
+
+            } catch (Exception ex) {
+                System.out.println("Lecture Echantillon pour MAJ IHM = null");
+            }
+
+        } catch (Exception ex) {
+            System.out.println("MAJ RV IHM = null");
+        }
+
+        
+        
     }
 
     public void supprimerRapportVisite() {
