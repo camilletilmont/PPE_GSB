@@ -425,12 +425,12 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
 
             ArrayList<CMedicament> listMedVide = new ArrayList<>();
 
-            if (!listEchantillonsNewRapport.isEmpty() && prat != null) {
+            if (prat != null) {
 
                 getMetierDetailRV().modifierRapportVisite(new CRapportVisite(cle, gb, bilan, motif, visit, prat, listEchantillonsNewRapport, listMedVide));
 
             } else {
-                System.out.println(prat.getNom() + " " + listEchantillonsNewRapport.get(0).getMedicamentEchantillon().getNomCommercial());
+                
                 System.out.println("Erreur insertion RV IHM 'enregistrer' nouveau rapport");
             }
 

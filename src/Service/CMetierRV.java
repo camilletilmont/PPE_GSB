@@ -179,24 +179,65 @@ public class CMetierRV {
             tableRV.modifierRapportVisite(rapportUpdate);
             try {
                 
-
+                ArrayList<CEchantillon> listEchanExistInTab = tableEchan.lire1Echantillon(Integer.toString(rapportUpdate.getIdRapportVisite()));
                 
                     for (int a = 0; a < rapportUpdate.getListeEchantillonRapport().size(); a++) {
-                            boolean test = false;
+                            boolean testExist = false;
                         try {
-                            ArrayList<CEchantillon> listEchan = tableEchan.lire1Echantillon(Integer.toString(rapportUpdate.getIdRapportVisite()));
-                            for(int x = 0; x < listEchan.size();x++){
-                                if(listEchan.get(x).getMedicamentEchantillon().getNomCommercial().equals(rapportUpdate.getListeEchantillonRapport().get(a).getMedicamentEchantillon().getNomCommercial())){
-                            tableEchan.modifierEchantillon(listEchan.get(x), rapportUpdate);
-                                }else{
-                            tableEchan.insererEchantillon(listEchan.get(x), rapportUpdate);
+                            
+                            for(int x = 0; x < listEchanExistInTab.size();x++){
+                                if(listEchanExistInTab.get(x).getMedicamentEchantillon().getNomCommercial().equals(rapportUpdate.getListeEchantillonRapport().get(a).getMedicamentEchantillon().getNomCommercial())){
+                                    testExist = true;
                                 }
                             }
+                            if(testExist){
+                            tableEchan.modifierEchantillon(rapportUpdate.getListeEchantillonRapport().get(a), rapportUpdate);
+                            }else{
+                            tableEchan.insererEchantillon(rapportUpdate.getListeEchantillonRapport().get(a), rapportUpdate);
+                            }
+                            
+                           
+                            
+                            
                         } catch (Exception ex) {
                             System.out.println("Mise à jour Echantillon n° " + a + " IHM = null");
                         }
 
                     }
+                    
+                    
+                     try{
+                         
+                         
+                         for(int y = 0; y < listEchanExistInTab.size();y++){
+                             if(!rapportUpdate.getListeEchantillonRapport().isEmpty()){
+                             boolean testDelete = false;
+                             for (int b = 0; b < rapportUpdate.getListeEchantillonRapport().size(); b++) {
+                             
+                                  if(rapportUpdate.getListeEchantillonRapport().get(b).getMedicamentEchantillon().getNomCommercial().equals(listEchanExistInTab.get(y).getMedicamentEchantillon().getNomCommercial())){
+                                  
+                                  testDelete = true;
+                                  }
+                                 
+                             
+                             }
+                             
+                             if(!testDelete){
+                                 tableEchan.supprimerEchantillon(Integer.toString(rapportUpdate.getIdRapportVisite()), Integer.toString(listEchanExistInTab.get(y).getMedicamentEchantillon().getDepotLegal()));
+                             
+                             
+                             }
+                             }else{
+                                  tableEchan.supprimerEchantillon(Integer.toString(rapportUpdate.getIdRapportVisite()), Integer.toString(listEchanExistInTab.get(y).getMedicamentEchantillon().getDepotLegal()));  
+                                     }
+                     
+                         } 
+                            
+                            }catch(Exception ex){
+                            
+                                System.out.println("Suppression MAJ Echantillon IHM");
+                            }
+                    
                 
 
             } catch (Exception ex) {
