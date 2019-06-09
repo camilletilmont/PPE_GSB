@@ -308,15 +308,16 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
 
             int id = 0;
             GregorianCalendar gb = new GregorianCalendar();
-            SimpleDateFormat format = new SimpleDateFormat("dd/mm/yyyy");
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
             Date date;
             try {
+                
                 date = format.parse(getDateLabel().getText());
                 gb.setTime(date);
             } catch (ParseException ex) {
                 Logger.getLogger(JPanelDetailRapport.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+            
             String bilan = getBilanText().getText();
             String motif = getMotifText().getText();
             CVisiteur visit = getMetierDetailRV().getVisiteur();
@@ -354,12 +355,11 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
 
             ArrayList<CMedicament> listMedVide = new ArrayList<>();
 
-            if (!listEchantillonsNewRapport.isEmpty() && prat != null) {
+            if (prat != null) {
 
                 getMetierDetailRV().creerRapportVisite(new CRapportVisite(id, gb, bilan, motif, visit, prat, listEchantillonsNewRapport, listMedVide));
 
             } else {
-                System.out.println(prat.getNom() + " " + listEchantillonsNewRapport.get(0).getMedicamentEchantillon().getNomCommercial());
                 System.out.println("Erreur insertion RV IHM 'enregistrer' nouveau rapport");
             }
 
@@ -379,10 +379,11 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
         } else if (jButton2.getText().equalsIgnoreCase("Mettre à jour")) {
 
             GregorianCalendar gb = new GregorianCalendar();
-            SimpleDateFormat format = new SimpleDateFormat("dd/mm/yyyy");
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
             Date date;
             try {
                 date = format.parse(getDateLabel().getText());
+                System.out.println(getDateLabel().getText());
                 gb.setTime(date);
             } catch (ParseException ex) {
                 Logger.getLogger(JPanelDetailRapport.class.getName()).log(Level.SEVERE, null, ex);
@@ -440,6 +441,7 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
             getPanelGeneral().setSelectedIndex(0);
             getMedocComboBox().setSelectedIndex(0);
             getQteComboBox().setSelectedIndex(0);
+            getPraticienComboBox().setSelectedIndex(0);
         }
 
         getPanelList().refresh();
