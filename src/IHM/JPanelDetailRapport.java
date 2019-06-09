@@ -311,13 +311,13 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
             SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
             Date date;
             try {
-                
+
                 date = format.parse(getDateLabel().getText());
                 gb.setTime(date);
             } catch (ParseException ex) {
                 Logger.getLogger(JPanelDetailRapport.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             String bilan = getBilanText().getText();
             String motif = getMotifText().getText();
             CVisiteur visit = getMetierDetailRV().getVisiteur();
@@ -366,6 +366,7 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
             getPanelGeneral().setEnabledAt(0, true);
             getPanelGeneral().setBackgroundAt(0, Color.lightGray);
             getPanelGeneral().setForegroundAt(0, Color.white);
+            getPraticienComboBox().setSelectedIndex(0);
             getPanelGeneral().setSelectedIndex(0);
             getMedocComboBox().setSelectedIndex(0);
             getQteComboBox().setSelectedIndex(0);
@@ -431,17 +432,18 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
                 getMetierDetailRV().modifierRapportVisite(new CRapportVisite(cle, gb, bilan, motif, visit, prat, listEchantillonsNewRapport, listMedVide));
 
             } else {
-                
+
                 System.out.println("Erreur insertion RV IHM 'enregistrer' nouveau rapport");
             }
 
             getPanelGeneral().setEnabledAt(0, true);
             getPanelGeneral().setBackgroundAt(0, Color.lightGray);
             getPanelGeneral().setForegroundAt(0, Color.white);
+            
             getPanelGeneral().setSelectedIndex(0);
             getMedocComboBox().setSelectedIndex(0);
             getQteComboBox().setSelectedIndex(0);
-            getPraticienComboBox().setSelectedIndex(0);
+
         }
 
         getPanelList().refresh();
@@ -460,7 +462,7 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
             }
 
         }
-        if (!exist) {
+        if (!exist && modelEchan.getRowCount() < 10) {
             modelEchan.addRow(new Object[]{getMedocComboBox().getSelectedItem(), getQteComboBox().getSelectedItem()});
         }
 
@@ -482,9 +484,11 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
         getNomPra().show();
 
         getMedocComboBox().show();
+        if(getMedocComboBox().getItemCount() == 0){
         for (int y = 0; y < getMetierDetailRV().getListeMedicaments().size(); y++) {
             getMedocComboBox().addItem(getMetierDetailRV().getListeMedicaments().get(y).getNomCommercial());
 
+        }
         }
 
         getQteComboBox().show();
@@ -770,11 +774,15 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
 
         DefaultTableModel modelEchan = (DefaultTableModel) getEchantillonTab().getModel();
         modelEchan.setRowCount(0);
+        
 
         getMedocComboBox().show();
+        
+        if(getMedocComboBox().getItemCount() == 0){
         for (int y = 0; y < getMetierDetailRV().getListeMedicaments().size(); y++) {
             getMedocComboBox().addItem(getMetierDetailRV().getListeMedicaments().get(y).getNomCommercial());
 
+        }
         }
 
         getNomPra().hide();

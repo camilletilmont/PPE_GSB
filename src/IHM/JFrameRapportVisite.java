@@ -24,6 +24,7 @@ public class JFrameRapportVisite extends javax.swing.JFrame {
         getjPanelDetailRapport2().setPanelGeneral(jTabbedPane2);
         getjPanelDetailRapport2().setPanelList(jPanelListeRapport1);
         
+        
         //getjTabbedPane2().setTabPlacement(ABORT);
         
     }
