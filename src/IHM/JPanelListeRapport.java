@@ -76,13 +76,13 @@ public class JPanelListeRapport extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        listRapportsTab = new javax.swing.JTable();
+        buttonNewRapport = new javax.swing.JButton();
+        buttonLireRapport = new javax.swing.JButton();
+        buttonDeconnexion = new javax.swing.JButton();
+        buttonRefresh = new javax.swing.JButton();
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        listRapportsTab.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -105,33 +105,33 @@ public class JPanelListeRapport extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(listRapportsTab);
 
-        jButton1.setText("Nouveau Rapport");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonNewRapport.setText("Nouveau Rapport");
+        buttonNewRapport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                buttonNewRapportActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Lire Rapport");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        buttonLireRapport.setText("Lire Rapport");
+        buttonLireRapport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                buttonLireRapportActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Se Deconnecter");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        buttonDeconnexion.setText("Se Deconnecter");
+        buttonDeconnexion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                buttonDeconnexionActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Rafraichir");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        buttonRefresh.setText("Rafraichir");
+        buttonRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                buttonRefreshActionPerformed(evt);
             }
         });
 
@@ -143,10 +143,10 @@ public class JPanelListeRapport extends javax.swing.JPanel {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 669, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(buttonNewRapport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonLireRapport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonDeconnexion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
@@ -155,19 +155,19 @@ public class JPanelListeRapport extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonNewRapport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonLireRapport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(314, 314, 314)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(buttonDeconnexion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jScrollPane2))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void buttonNewRapportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNewRapportActionPerformed
         // TODO add your handling code here:
         
         
@@ -179,14 +179,14 @@ public class JPanelListeRapport extends javax.swing.JPanel {
        getPanelParent().setEnabledAt(1, false);
         getPanelParent().setBackgroundAt(1, Color.lightGray);
         getPanelParent().setForegroundAt(1, Color.white);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_buttonNewRapportActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void buttonLireRapportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLireRapportActionPerformed
         // TODO add your handling code here:
         
         
         
-        CRapportVisite rapportSelect = getMetierListeRV().getListeRapportVisite().get(getjTable2().getSelectedRow());
+        CRapportVisite rapportSelect = getMetierListeRV().getListeRapportVisite().get(getListRapportsTab().getSelectedRow());
         getPanelDetailRapport().refreshRapportUnique(rapportSelect.getIdRapportVisite());
         
         
@@ -198,18 +198,18 @@ public class JPanelListeRapport extends javax.swing.JPanel {
         getPanelParent().setBackgroundAt(1, Color.lightGray);
         getPanelParent().setForegroundAt(1, Color.white);
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_buttonLireRapportActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void buttonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRefreshActionPerformed
         // TODO add your handling code here:
         refresh();
         
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_buttonRefreshActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void buttonDeconnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeconnexionActionPerformed
         // TODO add your handling code here:  
         
-        DefaultTableModel model = (DefaultTableModel) getjTable2().getModel();
+        DefaultTableModel model = (DefaultTableModel) getListRapportsTab().getModel();
                 model.setRowCount(0);
         
         
@@ -222,30 +222,30 @@ public class JPanelListeRapport extends javax.swing.JPanel {
         getPanelParent().setForegroundAt(2, Color.LIGHT_GRAY);
         getPanelParent().setSelectedIndex(0);
         
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_buttonDeconnexionActionPerformed
 
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton buttonDeconnexion;
+    private javax.swing.JButton buttonLireRapport;
+    private javax.swing.JButton buttonNewRapport;
+    private javax.swing.JButton buttonRefresh;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable listRapportsTab;
     // End of variables declaration//GEN-END:variables
 
-    public JTable getjTable2() {
-        return jTable2;
+    public JTable getListRapportsTab() {
+        return listRapportsTab;
     }
 
-    public void setjTable2(JTable jTable2) {
-        this.jTable2 = jTable2;
+    public void setListRapportsTab(JTable listRapportsTab) {
+        this.listRapportsTab = listRapportsTab;
     }
 
     public void refresh(){
      int valueRefresh = getMetierListeRV().afficherRPVisiteurs();
-     DefaultTableModel model = (DefaultTableModel) getjTable2().getModel();
+     DefaultTableModel model = (DefaultTableModel) getListRapportsTab().getModel();
         switch (valueRefresh){
             case 0 :
                 

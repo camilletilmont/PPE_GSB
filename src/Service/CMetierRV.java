@@ -253,6 +253,28 @@ public class CMetierRV {
     }
 
     public void supprimerRapportVisite() {
+        
+        
+        String idRapportToDelete = Integer.toString(rapportV1.getIdRapportVisite());
+        
+        try{
+        
+        tableEchan.supprimerEchantillonFrom1Rapport(idRapportToDelete);
+        
+            try{
+            
+            tableRV.supprimerRapportVisite("RAP_NUM_RAPPORT_VISITE", idRapportToDelete);
+            }catch(Exception ex){
+            System.out.println("Suppresion d'un rapport IHM = impossible");
+            
+            }
+        
+        
+        }catch(Exception ex){
+        
+        System.out.println("Suppression des echantillons avant suppression rapport IHM = impossible");
+        }
+        
     }
 
 

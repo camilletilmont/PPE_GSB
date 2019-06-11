@@ -154,6 +154,23 @@ public class CTableEchantillon {
     }
      
      
+     //suppression des Echantillons liés à un rapport
+     
+     public int supprimerEchantillonFrom1Rapport(String idRapport) {
+        String req = "DELETE FROM OFFRIR WHERE RAP_NUM_RAPPORT_VISITE = '" + idRapport +"' ;";
+        
+        int res = -1;
+        if (bdd.connecter() == true) {
+            res = bdd.executerRequeteUpdate(req);
+            System.out.println("Res = " + res);
+            bdd.deconnecter();
+        } else {
+            System.out.println("Connexion manipBdd.OFFRIR KO");
+        }
+        return res;
+    }
+     
+     
      //methode afin de convertire les données récupérées de la table
      
      CEchantillon convertir_RS_Echantillon(ResultSet rs) {
