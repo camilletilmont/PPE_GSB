@@ -87,14 +87,14 @@ public class JPanelListeRapport extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Date", "Praticien", "Motif Visite", "Bilan"
+                "Date", "Praticien", "Motif Visite", "Bilan", "Visiteur"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -245,12 +245,16 @@ public class JPanelListeRapport extends javax.swing.JPanel {
 
     public void refresh(){
      int valueRefresh = getMetierListeRV().afficherRPVisiteurs();
+     DefaultTableModel model = (DefaultTableModel) getjTable2().getModel();
         switch (valueRefresh){
             case 0 :
                 
                 break;
             case 2 :
-                DefaultTableModel model = (DefaultTableModel) getjTable2().getModel();
+                
+                model.setColumnCount(4);
+                
+                
                 model.setRowCount(0);
                 getMetierListeRV().getListeRapportVisite().forEach((rapport) -> {
                     model.addRow(new Object[]{new SimpleDateFormat("dd/MM/yyyy").format(rapport.getDateRapport().getTime()),
@@ -258,6 +262,21 @@ public class JPanelListeRapport extends javax.swing.JPanel {
                         rapport.getMotifRapport(),rapport.getBilanRapport()});
                 });
                 break;
+            case 3 :
+                
+                if(model.getColumnCount() < 5){
+                model.addColumn("Visiteur");
+                model.setColumnCount(5);
+                }
+                model.setRowCount(0);
+                getMetierListeRV().getListeRapportVisite().forEach((rapport) -> {
+                    model.addRow(new Object[]{new SimpleDateFormat("dd/MM/yyyy").format(rapport.getDateRapport().getTime()),
+                        rapport.getPraticienRapport().getNom() + " " + rapport.getPraticienRapport().getPrenom(),
+                        rapport.getMotifRapport(),rapport.getBilanRapport(),rapport.getVisiteurRapport().getMatricule()});
+                });
+                
+                break;
+            
             default :
                 
                 break;

@@ -255,12 +255,26 @@ public class CMetierRV {
     public void supprimerRapportVisite() {
     }
 
-    public void ajouterMedicOffert() {
-    }
 
     public int afficherRPVisiteurs() {
         CTableRapportVisite tableRP = new CTableRapportVisite();
-        ArrayList<CRapportVisite> rapportsTest = tableRP.lire1RapportVisite("VIS_MATRICULE_VISITEUR", getVisiteur().getMatricule());
+        
+        ArrayList<CRapportVisite> rapportsTest;
+        
+        if(getVisiteur().getRole().equals("Administrateur")){
+            rapportsTest = tableRP.lireRapportVisite();
+
+        if (rapportsTest.isEmpty()) {
+            return 0;
+        } else {
+            setListeRapportVisite(rapportsTest);
+            return 3;
+
+        }
+            
+        
+        }else{
+        rapportsTest = tableRP.lire1RapportVisite("VIS_MATRICULE_VISITEUR", getVisiteur().getMatricule());
 
         if (rapportsTest.isEmpty()) {
             return 0;
@@ -268,6 +282,7 @@ public class CMetierRV {
             setListeRapportVisite(rapportsTest);
             return 2;
 
+        }
         }
     }
 

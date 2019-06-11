@@ -392,7 +392,7 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
 
             String bilan = getBilanText().getText();
             String motif = getMotifText().getText();
-            CVisiteur visit = getMetierDetailRV().getVisiteur();
+            CVisiteur visit = getMetierDetailRV().getRapportV1().getVisiteurRapport();
 
             ArrayList<CEchantillon> listEchantillonsNewRapport = new ArrayList<>();
 

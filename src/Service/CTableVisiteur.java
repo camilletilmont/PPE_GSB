@@ -6,6 +6,7 @@
 package Service;
 
 import Donnees.CAdresse;
+import Donnees.CRole;
 import Donnees.CSecteur;
 import Donnees.CVisiteur;
 import bdd.CBDD;
@@ -185,9 +186,13 @@ public class CTableVisiteur {
             String rue = address.substring(ind + 1);
            GregorianCalendar gb = new GregorianCalendar();
            gb.setTime(Date.valueOf(rs.getString("VIS_DATEEMBAUCHE_VISITEUR")));
+           
+           CTableTravailler tabRole = new CTableTravailler();
+           ArrayList<CRole> listRole = tabRole.lire1Roles("VIS_MATRICULE_VISITEUR", rs.getString("VIS_MATRICULE_VISITEUR"));
+           String roleLibelle = listRole.get(listRole.size() - 1).getNomRole();
             
                     return new CVisiteur(rs.getString("VIS_MATRICULE_VISITEUR"), rs.getString("VIS_NOM_VISITEUR"),rs.getString("VIS_PRENOM_VISITEUR"),
-                    gb,"",new CAdresse(num,rue,rs.getString("VIS_CP_VISITEUR"),rs.getString("VIS_VILLE_VISITEUR")),rs.getInt("DEP_CODE_DEPARTEMENT"));
+                    gb,roleLibelle,new CAdresse(num,rue,rs.getString("VIS_CP_VISITEUR"),rs.getString("VIS_VILLE_VISITEUR")),rs.getInt("DEP_CODE_DEPARTEMENT"));
       
            
         } catch (SQLException ex) {
