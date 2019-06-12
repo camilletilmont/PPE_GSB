@@ -11,11 +11,14 @@ import javax.swing.JTabbedPane;
  */
 public class JFrameRapportVisite extends javax.swing.JFrame {
 
-    /**
-     * Creates new form JFrameRapportVisite
-     */
+    //classe pour la fenêtre de l'application
+    
     public JFrameRapportVisite() {
+        //initialisation de tous les composants
         initComponents();
+        
+        
+        //liaison entre les différents Panels
         getjPanelConnexion2().setPanelParent(jTabbedPane2);
         getjPanelConnexion2().setPanelListRapport(jPanelListeRapport1);
         getjPanelListeRapport1().setPanelParent(jTabbedPane2);
@@ -25,9 +28,33 @@ public class JFrameRapportVisite extends javax.swing.JFrame {
         getjPanelDetailRapport2().setPanelList(jPanelListeRapport1);
         
         
-        //getjTabbedPane2().setTabPlacement(ABORT);
+       
         
     }
+    
+    //getter et setter des différents Panels et du tableau réunissant les panels
+    public final JPanelConnexion getjPanelConnexion2() {
+        return jPanelConnexion2;
+    }
+
+    public final JPanelDetailRapport getjPanelDetailRapport2() {
+        return jPanelDetailRapport2;
+    }
+
+    public final JPanelListeRapport getjPanelListeRapport1() {
+        return jPanelListeRapport1;
+    }
+    
+
+    public void setjTabbedPane1(JTabbedPane jTabbedPane2) {
+        this.jTabbedPane2 = jTabbedPane2;
+    }
+
+    public final JTabbedPane getjTabbedPane2() {
+        return jTabbedPane2;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -111,25 +138,8 @@ public class JFrameRapportVisite extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane2;
     // End of variables declaration//GEN-END:variables
 
-    public final JPanelConnexion getjPanelConnexion2() {
-        return jPanelConnexion2;
-    }
-
-    public final JPanelDetailRapport getjPanelDetailRapport2() {
-        return jPanelDetailRapport2;
-    }
-
-    public final JPanelListeRapport getjPanelListeRapport1() {
-        return jPanelListeRapport1;
-    }
     
-
-    public void setjTabbedPane1(JTabbedPane jTabbedPane2) {
-        this.jTabbedPane2 = jTabbedPane2;
-    }
-
-    public final JTabbedPane getjTabbedPane2() {
-        return jTabbedPane2;
-    }
+    
+    
     
 }

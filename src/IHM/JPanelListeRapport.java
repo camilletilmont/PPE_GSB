@@ -5,7 +5,6 @@
  */
 package IHM;
 
-
 import Donnees.CRapportVisite;
 import Service.CMetierRV;
 import java.awt.Color;
@@ -14,26 +13,25 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-
 /**
  *
  * @author camilletilmont
  */
 public class JPanelListeRapport extends javax.swing.JPanel {
 
-    /**
-     * Creates new form JPanelListeRapport
-     */
+    //classe du panneau du menu principal avec la liste des rapports
+    
     public JPanelListeRapport() {
         initComponents();
-        
-    }
-    
-     protected CMetierRV metierListeRV;
-      protected JTabbedPane panelParent;
-      protected JPanelDetailRapport panelDetailRapport;
-      protected JPanelConnexion panelCo;
 
+    }
+    //attributs
+    protected CMetierRV metierListeRV;
+    protected JTabbedPane panelParent;
+    protected JPanelDetailRapport panelDetailRapport;
+    protected JPanelConnexion panelCo;
+
+    //getter et setter
     public JPanelConnexion getPanelCo() {
         return panelCo;
     }
@@ -64,6 +62,14 @@ public class JPanelListeRapport extends javax.swing.JPanel {
 
     public void setMetierListeRV(CMetierRV metier) {
         this.metierListeRV = metier;
+    }
+    
+     public JTable getListRapportsTab() {
+        return listRapportsTab;
+    }
+
+    public void setListRapportsTab(JTable listRapportsTab) {
+        this.listRapportsTab = listRapportsTab;
     }
 
     /**
@@ -167,52 +173,55 @@ public class JPanelListeRapport extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    //action pour la création d'un nouveau rapport
     private void buttonNewRapportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNewRapportActionPerformed
-        // TODO add your handling code here:
         
-        
+
         getPanelDetailRapport().newRV();
-         getPanelParent().setSelectedIndex(1);
-       getPanelParent().setEnabledAt(0, false);
-       getPanelParent().setBackgroundAt(0, Color.darkGray);
-       getPanelParent().setForegroundAt(0, Color.LIGHT_GRAY);
-       getPanelParent().setEnabledAt(1, false);
+        getPanelParent().setSelectedIndex(1);
+        getPanelParent().setEnabledAt(0, false);
+        getPanelParent().setBackgroundAt(0, Color.darkGray);
+        getPanelParent().setForegroundAt(0, Color.LIGHT_GRAY);
+        getPanelParent().setEnabledAt(1, false);
         getPanelParent().setBackgroundAt(1, Color.lightGray);
         getPanelParent().setForegroundAt(1, Color.white);
     }//GEN-LAST:event_buttonNewRapportActionPerformed
 
+    
+    //action pour la lecture d'un rapport selectionné au préalable dans la liste
     private void buttonLireRapportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLireRapportActionPerformed
-        // TODO add your handling code here:
-        
-        
-        
+       
+        if(getListRapportsTab().getSelectedRow() != -1){
         CRapportVisite rapportSelect = getMetierListeRV().getListeRapportVisite().get(getListRapportsTab().getSelectedRow());
         getPanelDetailRapport().refreshRapportUnique(rapportSelect.getIdRapportVisite());
-        
-        
-       getPanelParent().setSelectedIndex(1);
-       getPanelParent().setEnabledAt(0, false);
-       getPanelParent().setBackgroundAt(0, Color.darkGray);
-       getPanelParent().setForegroundAt(0, Color.LIGHT_GRAY);
-       getPanelParent().setEnabledAt(1, false);
+
+        getPanelParent().setSelectedIndex(1);
+        getPanelParent().setEnabledAt(0, false);
+        getPanelParent().setBackgroundAt(0, Color.darkGray);
+        getPanelParent().setForegroundAt(0, Color.LIGHT_GRAY);
+        getPanelParent().setEnabledAt(1, false);
         getPanelParent().setBackgroundAt(1, Color.lightGray);
         getPanelParent().setForegroundAt(1, Color.white);
-        
+        }
     }//GEN-LAST:event_buttonLireRapportActionPerformed
 
+    
+    //action pour la mise à jour du panneau
     private void buttonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRefreshActionPerformed
-        // TODO add your handling code here:
+       
         refresh();
-        
+
     }//GEN-LAST:event_buttonRefreshActionPerformed
 
+    
+    
+    //action pour la deconnexion avec retour a la page co
     private void buttonDeconnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeconnexionActionPerformed
-        // TODO add your handling code here:  
         
+
         DefaultTableModel model = (DefaultTableModel) getListRapportsTab().getModel();
-                model.setRowCount(0);
-        
-        
+        model.setRowCount(0);
+
         getPanelParent().insertTab("Connexion", null, panelCo, TOOL_TIP_TEXT_KEY, 0);
         getPanelParent().setEnabledAt(1, false);
         getPanelParent().setBackgroundAt(1, Color.darkGray);
@@ -221,10 +230,9 @@ public class JPanelListeRapport extends javax.swing.JPanel {
         getPanelParent().setBackgroundAt(2, Color.darkGray);
         getPanelParent().setForegroundAt(2, Color.LIGHT_GRAY);
         getPanelParent().setSelectedIndex(0);
-        
+
     }//GEN-LAST:event_buttonDeconnexionActionPerformed
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonDeconnexion;
@@ -235,57 +243,62 @@ public class JPanelListeRapport extends javax.swing.JPanel {
     private javax.swing.JTable listRapportsTab;
     // End of variables declaration//GEN-END:variables
 
-    public JTable getListRapportsTab() {
-        return listRapportsTab;
-    }
-
-    public void setListRapportsTab(JTable listRapportsTab) {
-        this.listRapportsTab = listRapportsTab;
-    }
-
-    public void refresh(){
-     int valueRefresh = getMetierListeRV().afficherRPVisiteurs();
-     DefaultTableModel model = (DefaultTableModel) getListRapportsTab().getModel();
-        switch (valueRefresh){
-            case 0 :
-                
-                break;
-            case 2 :
-                
+   
+    //methodes
+    
+    //methode de mise à jour des données
+    public void refresh() {
+        int valueRefresh = getMetierListeRV().afficherRPVisiteurs();
+        DefaultTableModel model = (DefaultTableModel) getListRapportsTab().getModel();
+        switch (valueRefresh) {
+            case 0:
+                //vide pour visiteur
                 model.setColumnCount(4);
-                
-                
+                model.setRowCount(0);
+                break;
+            case 1:
+                //vide pour un admin
+                if (model.getColumnCount() < 5) {
+                    model.addColumn("Visiteur");
+                    model.setColumnCount(5);
+                   
+                }
+                 model.setRowCount(0);
+            case 2:
+                //pour un visiteur
+                model.setColumnCount(4);
+
                 model.setRowCount(0);
                 getMetierListeRV().getListeRapportVisite().forEach((rapport) -> {
                     model.addRow(new Object[]{new SimpleDateFormat("dd/MM/yyyy").format(rapport.getDateRapport().getTime()),
                         rapport.getPraticienRapport().getNom() + " " + rapport.getPraticienRapport().getPrenom(),
-                        rapport.getMotifRapport(),rapport.getBilanRapport()});
+                        rapport.getMotifRapport(), rapport.getBilanRapport()});
                 });
                 break;
-            case 3 :
-                
-                if(model.getColumnCount() < 5){
-                model.addColumn("Visiteur");
-                model.setColumnCount(5);
+            case 3:
+                //pour un admin
+                if (model.getColumnCount() < 5) {
+                    model.addColumn("Visiteur");
+                    model.setColumnCount(5);
                 }
                 model.setRowCount(0);
                 getMetierListeRV().getListeRapportVisite().forEach((rapport) -> {
                     model.addRow(new Object[]{new SimpleDateFormat("dd/MM/yyyy").format(rapport.getDateRapport().getTime()),
                         rapport.getPraticienRapport().getNom() + " " + rapport.getPraticienRapport().getPrenom(),
-                        rapport.getMotifRapport(),rapport.getBilanRapport(),rapport.getVisiteurRapport().getMatricule()});
+                        rapport.getMotifRapport(), rapport.getBilanRapport(), rapport.getVisiteurRapport().getMatricule()});
                 });
-                
+
                 break;
-            
-            default :
-                
+
+            default:
+
                 break;
-        
+
         }
-        
+
         getPanelParent().setEnabledAt(1, false);
         getPanelParent().setBackgroundAt(1, Color.darkGray);
         getPanelParent().setForegroundAt(1, Color.LIGHT_GRAY);
-    
+
     }
 }

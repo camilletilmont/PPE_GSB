@@ -82,7 +82,7 @@ public class CVisiteur {
         this.departement = departement;
     }
     
-    // Constructeur
+    // Constructeurs
     
     public CVisiteur (String matricule, String nom, String prenom, GregorianCalendar dateEmbauche,
             String role, CAdresse adresse, int departement){

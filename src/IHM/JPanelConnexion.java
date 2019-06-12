@@ -15,17 +15,18 @@ import javax.swing.JTabbedPane;
  */
 public class JPanelConnexion extends javax.swing.JPanel {
 
-    /**
-     * Creates new form JPanelConnexion
-     */
+    //classe du panneau de connexion
+    
     public JPanelConnexion() {
         initComponents();
     }
-
+    //attributs
     protected CMetierRV metierConnexion;
     protected JTabbedPane panelParent;
     protected JPanelListeRapport panelListRapport;
 
+    
+    //getter et setter
     public JPanelListeRapport getPanelListRapport() {
         return panelListRapport;
     }
@@ -116,21 +117,27 @@ public class JPanelConnexion extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    //action pour la connexion
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-
+        
+        //appel de la methode connexion de la classe metier
         int valueConnexion = getMetierConnexion().connexion(jTextField2.getText(), jTextField1.getText());
+        
+        //vérification des données pour la connexion
         switch (valueConnexion) {
             case 0:
-                
+                //si le matricule n'est pas dans la BDD
                 jTextField2.setText("Id Inconnu");
                 break;
             case 1:
+                //si le nom ne correspond pas au matricule
                 jTextField1.setText("Nom Incorrect");
                 
                 break;
 
             case 2:
+                //si la connexion est réussie
                 getPanelParent().setEnabledAt(1, true);
                 getPanelParent().setBackgroundAt(1, Color.lightGray);
                 getPanelParent().setForegroundAt(1, Color.white);
@@ -142,6 +149,8 @@ public class JPanelConnexion extends javax.swing.JPanel {
                 break;
 
             case 3:
+                
+                //autres cas
                 jTextField1.setText("");
                 jTextField2.setText("");
                 break;

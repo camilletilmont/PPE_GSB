@@ -18,6 +18,10 @@ import java.util.ArrayList;
  */
 public class CMetierRV {
 
+    //classe métier faisant le lien entre les classes manipulant les données de la BDD
+    //et la frame
+    
+    
     //attributs
     protected CVisiteur visiteur;
     protected ArrayList<CRapportVisite> listeRapportVisite;
@@ -28,6 +32,9 @@ public class CMetierRV {
     protected CTableRapportVisite tableRV;
     protected CRapportVisite rapportV1;
 
+    
+    //getter et setter
+    
     public ArrayList<CEchantillon> getListEchan() {
         return listEchan;
     }
@@ -60,7 +67,7 @@ public class CMetierRV {
         this.tableRV = tableRV;
     }
 
-    //getter et setter
+    
     public CVisiteur getVisiteur() {
         return visiteur;
     }
@@ -105,6 +112,10 @@ public class CMetierRV {
     }
 
     //methodes
+    
+    
+    //methode pour la connexion d'un visiteur avec vérification 
+    
     public int connexion(String id, String nom) {
         CTableVisiteur tableVisit = new CTableVisiteur();
         ArrayList<CVisiteur> visiTest = tableVisit.lire1Visiteurs("VIS_MATRICULE_VISITEUR", id);
@@ -127,18 +138,17 @@ public class CMetierRV {
 
     }
 
-    public void deconnexion() {
-
-    }
-
+    //methode pour la création d'un rapport de visite
     public void creerRapportVisite(CRapportVisite rapportInsert) {
 
         try {
+            
+            //création du rapport
             tableRV.insererRapportVisite(rapportInsert);
             try {
                 CRapportVisite rapportTempId = tableRV.lireDernierRapportVisite();
 
-                
+                    //création des echantillons liés
                     for (int a = 0; a < rapportInsert.getListeEchantillonRapport().size(); a++) {
 
                         try {
@@ -160,6 +170,8 @@ public class CMetierRV {
 
     }
 
+    
+    //methode pour la lecture d'un rapport en particulier
     public int lire1RV(String numero) {
 
         ArrayList<CRapportVisite> rapportTest = getTableRV().lire1RapportVisite("RAP_NUM_RAPPORT_VISITE", numero);
@@ -173,23 +185,32 @@ public class CMetierRV {
         }
     }
 
+    
+    //methode pour la modification d'un rapport existant
     public void modifierRapportVisite(CRapportVisite rapportUpdate) {
         
         try {
+            //lance la modification du rapport
             tableRV.modifierRapportVisite(rapportUpdate);
             try {
-                
+                //recupère tous les echantillons liés à ce rapport dans la BDD
                 ArrayList<CEchantillon> listEchanExistInTab = tableEchan.lire1Echantillon(Integer.toString(rapportUpdate.getIdRapportVisite()));
                 
                     for (int a = 0; a < rapportUpdate.getListeEchantillonRapport().size(); a++) {
                             boolean testExist = false;
                         try {
                             
+                            //compare les enchatillons du rapport de la BDD et ceux de l'object rapport modifié
+                            
+                            
                             for(int x = 0; x < listEchanExistInTab.size();x++){
                                 if(listEchanExistInTab.get(x).getMedicamentEchantillon().getNomCommercial().equals(rapportUpdate.getListeEchantillonRapport().get(a).getMedicamentEchantillon().getNomCommercial())){
                                     testExist = true;
                                 }
                             }
+                            
+                            
+                            //applique les modification ou les nouvelles insertions d'échantillons
                             if(testExist){
                             tableEchan.modifierEchantillon(rapportUpdate.getListeEchantillonRapport().get(a), rapportUpdate);
                             }else{
@@ -208,8 +229,11 @@ public class CMetierRV {
                     
                      try{
                          
-                         
+                         //compare la liste des chantillons de la BDD et ceux du rapport modifié pour voir si certains ont disparu
                          for(int y = 0; y < listEchanExistInTab.size();y++){
+                             
+                             //si le rapport modifié n'a plus d'échantillons ont les supprimes tous dans la BDD
+                             //sinon on supprime uniquement ceux qui ont disparus
                              if(!rapportUpdate.getListeEchantillonRapport().isEmpty()){
                              boolean testDelete = false;
                              for (int b = 0; b < rapportUpdate.getListeEchantillonRapport().size(); b++) {
@@ -252,17 +276,20 @@ public class CMetierRV {
         
     }
 
+    
+    //methode pour la suppresion d'un rapport (uniquement pour l'admin)
     public void supprimerRapportVisite() {
         
         
         String idRapportToDelete = Integer.toString(rapportV1.getIdRapportVisite());
-        
+        //on supprime d'avord le echantillons de la table OFFRIR qui font références
+        //au rapport à supprimer
         try{
         
         tableEchan.supprimerEchantillonFrom1Rapport(idRapportToDelete);
         
             try{
-            
+            //on supprime le rapport en question
             tableRV.supprimerRapportVisite("RAP_NUM_RAPPORT_VISITE", idRapportToDelete);
             }catch(Exception ex){
             System.out.println("Suppresion d'un rapport IHM = impossible");
@@ -277,7 +304,8 @@ public class CMetierRV {
         
     }
 
-
+    //methode pour afficher sur la page principale les rapports du visiteur connecté
+    //pour l'admin cela affiche tous les rapports de tous les visiteurs
     public int afficherRPVisiteurs() {
         CTableRapportVisite tableRP = new CTableRapportVisite();
         
@@ -287,7 +315,8 @@ public class CMetierRV {
             rapportsTest = tableRP.lireRapportVisite();
 
         if (rapportsTest.isEmpty()) {
-            return 0;
+            setListeRapportVisite(rapportsTest);
+            return 1;
         } else {
             setListeRapportVisite(rapportsTest);
             return 3;
@@ -299,6 +328,7 @@ public class CMetierRV {
         rapportsTest = tableRP.lire1RapportVisite("VIS_MATRICULE_VISITEUR", getVisiteur().getMatricule());
 
         if (rapportsTest.isEmpty()) {
+        setListeRapportVisite(rapportsTest);
             return 0;
         } else {
             setListeRapportVisite(rapportsTest);

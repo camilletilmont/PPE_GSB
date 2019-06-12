@@ -37,19 +37,19 @@ import javax.swing.table.DefaultTableModel;
  */
 public class JPanelDetailRapport extends javax.swing.JPanel {
 
-    /**
-     * Creates new form JPanelDetailRapport
-     */
+    //classe du panneau de lecture et modification d'un rapport
+     
     public JPanelDetailRapport() {
         initComponents();
 
     }
-
+    //attributs
     protected CMetierRV metierDetailRV;
     protected int cle;
     protected JTabbedPane panelGeneral;
     protected JPanelListeRapport panelList;
 
+    //getter et setter des attributs et des différents composants
     public JPanelListeRapport getPanelList() {
         return panelList;
     }
@@ -317,6 +317,11 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
         buttonAnnuler = new javax.swing.JButton();
         buttonSupprimer = new javax.swing.JButton();
 
+        motifText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                motifTextMouseClicked(evt);
+            }
+        });
         motifText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 motifTextActionPerformed(evt);
@@ -518,13 +523,18 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void motifTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motifTextActionPerformed
-        // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_motifTextActionPerformed
 
+    //bouton de validation d'action
     private void buttonValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonValiderActionPerformed
-        // TODO add your handling code here:
+        
+        //action pour enregistrement d'un nouveau rapport
         if (buttonValider.getText().equalsIgnoreCase("Enregistrer")) {
-
+            
+              if(getMotifText().getText().length() < 50){
+            //récupération des toutes les données du panneau
             int id = 0;
             GregorianCalendar gb = new GregorianCalendar();
             SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
@@ -542,7 +552,8 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
             CVisiteur visit = getMetierDetailRV().getVisiteur();
 
             ArrayList<CEchantillon> listEchantillonsNewRapport = new ArrayList<>();
-
+            
+            //récupération des échantillons selectionnés
             for (int y = 0; y < getEchantillonTab().getRowCount(); y++) {
                 for (int x = 0; x < getMetierDetailRV().getListeMedicaments().size(); x++) {
                     if (getEchantillonTab().getModel().getValueAt(y, 0).toString().equals(getMetierDetailRV().getListeMedicaments().get(x).getNomCommercial())) {
@@ -555,9 +566,9 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
                     }
                 }
             }
-
+             //récupération du praticien
             CPraticien prat = null;
-
+           
             for (int z = 0; z < getMetierDetailRV().getListPraticien().size(); z++) {
                 int pratTemp = getMetierDetailRV().getListPraticien().get(z).getIdPraticien();
 
@@ -573,7 +584,8 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
             }
 
             ArrayList<CMedicament> listMedVide = new ArrayList<>();
-
+            
+            //création du rapport
             if (prat != null) {
 
                 getMetierDetailRV().creerRapportVisite(new CRapportVisite(id, gb, bilan, motif, visit, prat, listEchantillonsNewRapport, listMedVide));
@@ -581,7 +593,8 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
             } else {
                 System.out.println("Erreur insertion RV IHM 'enregistrer' nouveau rapport");
             }
-
+            
+            //retour au menu principal
             getPanelGeneral().setEnabledAt(0, true);
             getPanelGeneral().setBackgroundAt(0, Color.lightGray);
             getPanelGeneral().setForegroundAt(0, Color.white);
@@ -589,15 +602,29 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
             getPanelGeneral().setSelectedIndex(0);
             getMedocComboBox().setSelectedIndex(0);
             getQteComboBox().setSelectedIndex(0);
+            getPanelList().refresh();
+            }else{
+            
+                getMotifText().setForeground(Color.red);
+                
+                    }
 
+            
+            //action pour le retour au menu principal si aucun modification n'est demandée
         } else if (buttonValider.getText().equalsIgnoreCase("Ok")) {
             getPanelGeneral().setEnabledAt(0, true);
             getPanelGeneral().setBackgroundAt(0, Color.lightGray);
             getPanelGeneral().setForegroundAt(0, Color.white);
             getPanelGeneral().setSelectedIndex(0);
+            getPanelList().refresh();
 
+            
+            //action pour enregistrement des modifications d'un rapport
         } else if (buttonValider.getText().equalsIgnoreCase("Mettre à jour")) {
-
+            
+            
+            if(getMotifText().getText().length() < 50){
+            //récupération des données du rapport modifié
             GregorianCalendar gb = new GregorianCalendar();
             SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
             Date date;
@@ -612,7 +639,9 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
             String bilan = getBilanText().getText();
             String motif = getMotifText().getText();
             CVisiteur visit = getMetierDetailRV().getRapportV1().getVisiteurRapport();
-
+            
+            
+            //récupération des échantillons du panneaux
             ArrayList<CEchantillon> listEchantillonsNewRapport = new ArrayList<>();
 
             for (int y = 0; y < getEchantillonTab().getRowCount(); y++) {
@@ -628,6 +657,7 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
                 }
             }
 
+            //récupération du praticien
             CPraticien prat = null;
 
             for (int z = 0; z < getMetierDetailRV().getListPraticien().size(); z++) {
@@ -645,7 +675,9 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
             }
 
             ArrayList<CMedicament> listMedVide = new ArrayList<>();
-
+            
+            
+            //enregistrement des modifications
             if (prat != null) {
 
                 getMetierDetailRV().modifierRapportVisite(new CRapportVisite(cle, gb, bilan, motif, visit, prat, listEchantillonsNewRapport, listMedVide));
@@ -655,6 +687,7 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
                 System.out.println("Erreur insertion RV IHM 'enregistrer' nouveau rapport");
             }
 
+            //retour au menu principal
             getPanelGeneral().setEnabledAt(0, true);
             getPanelGeneral().setBackgroundAt(0, Color.lightGray);
             getPanelGeneral().setForegroundAt(0, Color.white);
@@ -662,16 +695,26 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
             getPanelGeneral().setSelectedIndex(0);
             getMedocComboBox().setSelectedIndex(0);
             getQteComboBox().setSelectedIndex(0);
-
+            getPanelList().refresh();
+            }else{
+            
+                getMotifText().setForeground(Color.red);
+            
+                    }
         }
-
-        getPanelList().refresh();
+        
+        
+        
 
 
     }//GEN-LAST:event_buttonValiderActionPerformed
 
+    
+    //action pour ajouter un échantillon avec sa quantité dans le tableau du panneau
+    //si quantité -> 0  = médicament dont le visiteur a parlé
     private void buttonAddEchanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddEchanActionPerformed
-        // TODO add your handling code here:
+       
+        
         DefaultTableModel modelEchan = (DefaultTableModel) getEchantillonTab().getModel();
         boolean exist = false;
         for (int a = 0; a < getEchantillonTab().getRowCount(); a++) {
@@ -681,6 +724,8 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
             }
 
         }
+        
+        //pas plus de 10 medicaments et pas de redondance
         if (!exist && modelEchan.getRowCount() < 10) {
             modelEchan.addRow(new Object[]{getMedocComboBox().getSelectedItem(), getQteComboBox().getSelectedItem()});
         }
@@ -688,16 +733,24 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
 
     }//GEN-LAST:event_buttonAddEchanActionPerformed
 
+    //action pour supprimer un échantillon selectionné dans le tableau
     private void buttonDeleteEchanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteEchanActionPerformed
-        // TODO add your handling code here:
-
+        
+        if(getEchantillonTab().getSelectedRow() != -1){
         DefaultTableModel modelEchan = (DefaultTableModel) getEchantillonTab().getModel();
         modelEchan.removeRow(getEchantillonTab().getSelectedRow());
+        }
     }//GEN-LAST:event_buttonDeleteEchanActionPerformed
 
+    
+    
+    //action pour passer le rapport en mode modification
     private void buttonModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonModifierActionPerformed
-        // TODO add your handling code here:
+        
+        
+        
         getMotifText().setEditable(true);
+        
         getBilanText().setEditable(true);
         getPraticienComboBox().hide();
         getNomPraticien().show();
@@ -723,12 +776,15 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
 
     }//GEN-LAST:event_buttonModifierActionPerformed
 
+    
     private void PraticienComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PraticienComboBoxActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_PraticienComboBoxActionPerformed
 
+    
+    //action pour annuler l'action en cours et retourner au menu principal
     private void buttonAnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAnnulerActionPerformed
-        // TODO add your handling code here:
+        
 
         getPanelGeneral().setEnabledAt(0, true);
         getPanelGeneral().setBackgroundAt(0, Color.lightGray);
@@ -742,29 +798,35 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
 
     }//GEN-LAST:event_buttonAnnulerActionPerformed
 
+    //action pour supprimer un rapport (pour admin)
     private void buttonSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSupprimerActionPerformed
-        // TODO add your handling code here:
-
+        
+        //ouverture d'un popup pour confirmer la suppression
         JOptionPane jop2 = new JOptionPane();
+
+        int option = jop2.showConfirmDialog(null, "Voulez vous vraiment supprimer ce rapport ?", "Warning", JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE);
+
         
-        int option = jop2.showConfirmDialog(null, "Voulez vous vraiment supprimer ce rapport ?", "Warning", JOptionPane.YES_NO_OPTION, 
-        JOptionPane.WARNING_MESSAGE);
-        
-       
+        //action si la suppression est confirmée
         if (option == JOptionPane.OK_OPTION) {
             getMetierDetailRV().supprimerRapportVisite();
-            
+
             getPanelGeneral().setEnabledAt(0, true);
             getPanelGeneral().setBackgroundAt(0, Color.lightGray);
             getPanelGeneral().setForegroundAt(0, Color.white);
             getPanelGeneral().setSelectedIndex(0);
-            
+
             getPanelList().refresh();
-            
-            
+
         }
 
     }//GEN-LAST:event_buttonSupprimerActionPerformed
+
+    private void motifTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_motifTextMouseClicked
+        getMotifText().setForeground(Color.black);
+        getMotifText().setText("");
+    }//GEN-LAST:event_motifTextMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -795,6 +857,13 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
     private javax.swing.JLabel nomVisiteurLabel;
     // End of variables declaration//GEN-END:variables
 
+    
+    //methodes
+    
+    
+    //methode pour ouvrir le panneau en mode "lecture d'un rapport"
+    //en fonction du rapport selectionné dans le menu principal
+    
     public void refreshRapportUnique(int id) {
 
         this.cle = id;
@@ -838,9 +907,11 @@ public class JPanelDetailRapport extends javax.swing.JPanel {
 
     }
 
+    
+    //methode pour ouvrir le panneau en mode "nouveau rapport"
     public void newRV() {
 
-        //this.rapportUnique = getMetierDetailRV().getRapportV1();
+        
         getMotifText().setText("");
         getMotifText().setEditable(true);
         getBilanText().setText("");
