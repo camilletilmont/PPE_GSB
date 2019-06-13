@@ -230,6 +230,9 @@ public class JPanelListeRapport extends javax.swing.JPanel {
         getPanelParent().setBackgroundAt(2, Color.darkGray);
         getPanelParent().setForegroundAt(2, Color.LIGHT_GRAY);
         getPanelParent().setSelectedIndex(0);
+        getPanelCo().getjPasswordField1().setEchoChar((char)0);
+        getPanelCo().getjPasswordField1().setText("matricule");
+        getPanelCo().getjTextField1().setText("Nom");
 
     }//GEN-LAST:event_buttonDeconnexionActionPerformed
 
